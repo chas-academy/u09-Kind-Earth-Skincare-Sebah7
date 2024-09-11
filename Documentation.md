@@ -29,6 +29,10 @@ I answered some of these questions and followed the following steps to conduct m
 
 **To Users**:
 
+Stage 1:
+
+This was to get insight if there is a need to create such an app and if there is acceptence.
+
 - How old are you?
 - Gender:
 - Skin type:
@@ -38,34 +42,64 @@ I answered some of these questions and followed the following steps to conduct m
 - How often do you change yor skin care?
 - What are you looking for in a skincare app?
 
-[THE FORM](https://forms.gle/fCrjog4BxAWSdTrY9)
+[THE FORM Idea](https://forms.gle/fCrjog4BxAWSdTrY9)
+
+Stage 2:
+
+This was to get insigt more on what I need for my design guides and requirments from users prespective.
+
+[THE FORM Design Sv](https://forms.gle/3UE1qrjUBj7CT81h7)
+[THE FORM Design En](https://forms.gle/kBsomr6rxwqgEDNGA)
 
 #### Analysis
 
-Based on the form and questions snet this is the info collected:
+Based on the first form and questions sent this is the info collected:
 
 - Who are my audince? Younger gen born between 1996 - 2008 (Gen Z), Females.
 - What do my audince proitrize? Matching products to skin, benifits, rating and reviews.
 - What needs do they have? Clean, benifitial and right products and routines.
 
+Based on the second phase of forms I created a Person, sitemap and went on with the lo-fi.
+
 ### Personas
+
+ [Link to Persona](https://www.figma.com/board/XnSUDxolkJOaFkZ4qN7uAo/Personas-_-SiteMaps?node-id=0-1&node-type=CANVAS&t=AgP9NL88lJ2BD1iq-0)
 
 ### Site map
 
+ [Link to site map](https://www.figma.com/board/XnSUDxolkJOaFkZ4qN7uAo/Personas-_-SiteMaps?node-id=0-1&node-type=CANVAS&t=AgP9NL88lJ2BD1iq-0)
+
 ### Prototype
+
+ [Link to lo-fi](https://www.figma.com/design/c2cu6Ibahgz1BqYKOdzrRJ/Low-fi-design?node-id=147-88&node-type=FRAME&t=G5aifOy9T7enKAaR-0)
 
 ## Frontend
 
 ### React
+
+Started by installing the ract pacadke with vit ein my project. [Guide](https://www.geeksforgeeks.org/how-to-setup-reactjs-with-vite/)
+
+## Backend
+
+### Node.js, Express and TS
+
+Followed the step on this [Guide](https://blog.logrocket.com/how-to-set-up-node-typescript-express/) for th einstallation of nodejs and express.
+
+**Some pointers fom installation:**
+
+- created package.json
+- installed npm and express server npm i express dotenv
+- Updated package.json and ignored node_modules in .git_ignore
+- Installed typescript npm i -D typescript @types/express @types/node
+- Generated a tsconfig.json fine npx tsc --init
+- Installed TS node npm i -D nodemon ts-node
+- Changed package.json and ran npm run build to create dist file , npm run start to run the index file then npm run dev to get live updates.
+- Tested express server with .ts in terminal with npx ts-node src/index.ts
+- Create App and server ts files.
+- Installed test with JEST
 
 ## API
 
 ### MongoDB
 
 ### Insomnia
-
-## Backend
-
-### Node.js
-
-### Express
