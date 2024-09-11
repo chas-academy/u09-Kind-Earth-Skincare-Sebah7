@@ -75,9 +75,27 @@ Based on the second phase of forms I created a Person, sitemap and went on with 
 
 ## Frontend
 
-### React
+### React and Tailwind
 
 Started by installing the ract pacadke with vit ein my project. [Guide](https://www.geeksforgeeks.org/how-to-setup-reactjs-with-vite/)
+
+And for tailwind i followed: [Guide](https://tailwindcss.com/docs/guides/create-react-app)
+
+Some pointers:
+
+Front:
+
+Installed React with Vite
+
+- ran ``npm create vite@latest projectName --template``
+- choose React package and Typescript with SWC
+- ran ``npm install`` then ``npm run dev``
+
+Installed Tailwind
+
+- ran ``npm install -D tailwindcss`` in the frontend folder
+- then ``npx tailwindcss init``
+- Update the ``tailwind.config.js`` and ``index.css``
 
 ## Backend
 
