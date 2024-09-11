@@ -96,7 +96,13 @@ Followed the step on this [Guide](https://blog.logrocket.com/how-to-set-up-node-
 - Changed package.json and ran npm run build to create dist file , npm run start to run the index file then npm run dev to get live updates.
 - Tested express server with .ts in terminal with npx ts-node src/index.ts
 - Create App and server ts files.
-- Installed test with JEST
+- Installed test with:
+  - ran ``npm i -D jest``
+  - then ``npm i -D ts-jest @types/jest``
+  - then ``npx ts-jest config:init``
+  - changed test in ``package.json``
+  - install ``npm install -D supertest superagent @types/supertest @types/superagent``
+- Installed CORS ``npm i --save-dev @types/cors``
 
 ## API
 
