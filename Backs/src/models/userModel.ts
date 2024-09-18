@@ -11,7 +11,7 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
   email: { type: String, required: true },
   dateOfBirth: { type: Date, required: true },
   password: { type: String, required: true },
-  role: { type: Number, default: 1 },
+  role: { type: Number, default: 2 },
   tokens: [{ token: { type: String, required: false } }],
   },
   {
