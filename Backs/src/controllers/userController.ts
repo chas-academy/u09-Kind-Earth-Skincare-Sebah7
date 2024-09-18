@@ -72,3 +72,24 @@ export const loginUser = async (user: Partial<IUser>) => {
     token,
   }
 }
+
+export const logoutUser = async (req: any) => {
+  try {
+        console.log('User before logout:', req.user); // Debugging: Log the user before logout
+    console.log('Token before logout:', req.token);
+
+    req.user.tokens = req.user.tokens.filter((token: any) => {
+      return token.token !== req.token;
+    });
+
+    await req.user.save();
+    
+        console.log('User after logout:', req.user); // Debugging: Log the user after logout
+
+    return { message: "User logged out successfully." };
+  } catch (error) {
+        console.error('Logout Error:', error); // Detailed error logging
+
+    return { error: error };
+  }
+};

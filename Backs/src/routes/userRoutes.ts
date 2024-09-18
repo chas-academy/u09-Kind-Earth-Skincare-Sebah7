@@ -1,6 +1,6 @@
 import express from 'express';
 import { IUser } from '../interfaces/IUser';
-import { loginUser, registerUser } from '../controllers/userController';
+import { loginUser, registerUser, logoutUser } from '../controllers/userController';
 import { auth, admin, moderator, CustomRequest } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -47,16 +47,29 @@ router.get('/me', auth, async (req: CustomRequest, res) => {
 
 // Logout user
 router.post('/logout', auth, async (req: CustomRequest, res) => {
-  if (req.user) {
-    req.user.tokens = req.user.tokens.filter((token) => {
-      return token.token !== req.token;
-    });
-    await req.user.save();
+  try {
+    const result = await logoutUser(req);
+    return res.status(200).json(result);
+  } catch (error: any) {
+    console.error('Error during logout:', error.message);
+    return res.status(500).json({ error: error.message });
   }
+  // if (req.user) {
+  //   req.user.tokens = req.user.tokens.filter((token) => {
+  //     return token.token !== req.token;
+  //   });
+  //   await req.user.save();
+  // }
 
-  return res.status(200).json({
-    message: 'User logged out successfully.',
-  });
+  //  router.get("/me", auth, async (req: CustomRequest, res) => {
+  //   return res.status(200).json({
+  //     user: req.user,
+  //   });
+  // });
+
+  // return res.status(200).json({
+  //   message: 'User logged out successfully.',
+  // });
 });
 
 // Logout user from all devices

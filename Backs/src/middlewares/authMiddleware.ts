@@ -19,19 +19,25 @@ export const auth = async (
 ) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '')
+    console.log('Token:', token);
     if (!token) {
+            console.error('Authentication failed. Token missing.');
       throw new Error('Authentication failed. Token missing.')
     }
 
     const decoded = jwt.verify(
-      token, process.env.JWT_KEY as string
-    ) as DecodedToken
+      token, process.env.JWT_SECRET as string
+    ) as DecodedToken;
+    console.log('Decoded Token:', decoded);
+
     const user = await User.findOne({
       _id: decoded._id,
       'tokens.token': token,
     })
+    console.log('User:', user);
 
     if (!user) {
+            console.error('Authentication failed. User not found.');
       throw new Error('Authentication failed. User not found.')
     }
 
@@ -39,6 +45,7 @@ export const auth = async (
     req.token = token
     next()
   } catch (error) {
+        console.error('Authentication Error:', error); // Detailed error logging
     res.status(401).send({ error: 'Authentication failed.' })
   }
 }
