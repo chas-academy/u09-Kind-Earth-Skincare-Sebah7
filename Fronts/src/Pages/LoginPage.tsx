@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import InputField from '../components/Auth/InputField';
 import Button from '../components/Auth/Button';
 import loginImage from '../assets/login.jpg';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -41,7 +42,9 @@ const Login: React.FC = () => {
       </div>
 
       <div className="text-base font-bold text-[#6f6d6d82] mb-12">
-        New to Kind Earth Skincare? <a href="./SignupPage" className="text-base font-bold text-[#6f6d6d82] underline">CREATE ACCOUNT</a>
+        New to Kind Earth Skincare? 
+        <Link to="/signup" className="text-base font-bold text-[#6f6d6d82] underline">CREATE ACCOUNT</Link>
+
       </div>
     </div>
     </div>
