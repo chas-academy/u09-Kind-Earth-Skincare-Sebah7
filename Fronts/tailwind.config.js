@@ -1,30 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 
 export default {
-  content: [
-       "./index.html", 
-       "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
   theme: {
     extend: {
       colors: {
-black: "#000",
-gray: "rgba(30, 30, 30, 0.72)"
-},
+        primaryText: "#F7F3F3",
+        formPrimaryText: "#062A0A",
+        formSecondaryText: "#440245",
+        formColor: "#b8cdad",
+        spruce: "#055E2F",
+      },
 
-fontFamily: {
-sans: ["Dancing Script", "cursive", "Helvetica", "Arial", "sans-serif"],
-},
-fontSize: {
-inherit: "inherit"
-},
- },
-},
-corePlugins: {
-preflight: false
-},
+      fontFamily: {
+        sans: ["Dancing Script", "cursive", "Helvetica", "Arial", "sans-serif"],
+      },
+      fontSize: {
+        inherit: "inherit",
+      },
+    },
+  },
+  corePlugins: {
+    preflight: false,
+  },
   plugins: [],
-}
-
-
+};
