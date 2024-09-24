@@ -6,11 +6,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryText: "#F7F3F3",
+        primaryText: "#472304",
         formPrimaryText: "#062A0A",
         formSecondaryText: "#440245",
-        formColor: "#b8cdad",
-        spruce: "#055E2F",
+        clayAsh: "#b8cdad",
+        // spruce: "#055E2F",
       },
 
       fontFamily: {

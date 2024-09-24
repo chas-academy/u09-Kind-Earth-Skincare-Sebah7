@@ -6,4 +6,5 @@
 
 body {
   @apply font-sans;
+  margin: 0;
 }

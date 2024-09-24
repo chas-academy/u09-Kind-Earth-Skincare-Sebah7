@@ -23,9 +23,9 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className=" flex flex-col md:flex-row rounded-lg bg-[#055e2f] px-1 py-1">
+    <div className=" flex flex-col md:flex-row rounded-lg bg-clayAsh px-1 py-1">
       <div
-        className={`flex-1 flex flex-grow flex-col items-center gap-y-3 rounded-l-md bg-formColor px-2`}
+        className={`flex-1 flex flex-grow flex-col items-center gap-y-3 rounded-l-md bg-clayAsh px-2`}
       >
         <div className="w-full max-w-xs">
           <div className="relative h-3/4 flex flex-col items-center">
