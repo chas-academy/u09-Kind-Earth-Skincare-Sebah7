@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { LuUser } from "react-icons/lu";
-import { Menu } from "@headlessui/react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,13 +16,13 @@ const Header = () => {
           Kind Earth Skincare
         </div>
 
-        <Menu onClick={() => setIsOpen(!isOpen)} className="md:hidden w-9 h-9">
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden w-9 h-9">
           {isOpen ? (
             <IoClose className="text-primaryText rounded" />
           ) : (
             <IoMenu className="text-primaryText rounded" />
           )}
-        </Menu>
+        </button>
 
         <div className={`hidden md:flex space-x-4`}>
           <a href="/" className="text-primaryText px-5 py-3">
