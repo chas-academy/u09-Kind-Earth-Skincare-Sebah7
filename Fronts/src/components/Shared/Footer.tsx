@@ -3,7 +3,7 @@ import { FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-spruce rounded flex flex-grow flex-col relative justify-center text-center py-4 mt-4">
+    <footer className="bg-clayAsh flex flex-grow flex-col relative justify-center text-center py-4 mt-4">
       <div className="text-primaryText flex flex-shrink-0 justify-evenly text-left">
         <div className="flex flex-col text-[15px] leading-[1.4] underline">
           <span>

@@ -7,7 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-spruce p-2 fixed top-0 left-0 mb-4 w-full z-40">
+    <nav className="bg-clayAsh p-2 fixed top-0 left-0 mb-4 w-full z-40">
       <div className="flex justify-around items-center">
         <a href="/login">
           <LuUser className="text-primaryText rounded w-9 h-9" />
@@ -49,7 +49,7 @@ const Header = () => {
 
       {isOpen && (
         <div
-          className={`fixed top-12 left-0 w-full bg-[#055e2f] flex flex-col space-y-2 p-6 z-30 transform transition-transform duration-300 ${
+          className={`fixed top-12 left-0 w-full bg-clayAsh flex flex-col space-y-2 p-6 z-30 transform transition-transform duration-300 ${
             isOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
