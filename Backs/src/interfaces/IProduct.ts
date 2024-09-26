@@ -1,5 +1,6 @@
 export interface IProduct extends Document {
   name: string;
+  productImageUrl?: string;
   description: string;
   categories:
     | "cleanser"
