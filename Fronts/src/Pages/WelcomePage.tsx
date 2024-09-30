@@ -7,7 +7,7 @@ const Welcome = () => {
     <>
     <Hero />
 
-<div className="bg-clayAsh">
+<div>
     <Category title="Search by catergory"/>
 
     <Category title="Search by criteria"/>

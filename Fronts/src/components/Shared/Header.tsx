@@ -6,7 +6,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-clayAsh p-2 fixed top-0 left-0 mb-4 w-full z-40">
+    <nav className="p-2 fixed top-0 left-0 mb-4 w-full z-40">
       <div className="flex justify-around items-center">
         <a href="/login">
           <LuUser className="text-primaryText rounded w-9 h-9" />
