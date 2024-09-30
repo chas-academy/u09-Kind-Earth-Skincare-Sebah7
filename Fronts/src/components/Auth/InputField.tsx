@@ -4,15 +4,17 @@ interface InputFieldProps {
   label: string;
   type: string;
   value: string;
+  id: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ label, type, value, onChange }) => {
+const InputField: React.FC<InputFieldProps> = ({ label, type, value, id, onChange }) => {
   return (
       <div className="w-full mt-7">
         <input
         type={type}
         value={value}
+        id={id}
         onChange={onChange}
         placeholder={label}
         className="font-sans appearance-none border
