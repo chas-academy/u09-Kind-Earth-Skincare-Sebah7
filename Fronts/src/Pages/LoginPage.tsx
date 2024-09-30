@@ -2,14 +2,64 @@ import React, { useState } from "react";
 import InputField from "../components/Auth/InputField";
 import Button from "../components/Auth/Button";
 import loginImage from "../assets/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log("Login", { email, password });
+ const [formData, setFormData] = useState ({
+  email: "",
+  password: "",
+ });
+
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value} = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setChecked(e.target.checked);
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+     console.log("Form submitted");
+     
+     fetch(
+      "http://localhost:3000/api/users/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+              console.log("Response data:", data);
+        if (data.error) {
+          console.error("Login error:", data.error);
+          // Handle the error
+          return;
+        }
+        const { user, token } = data;
+        if (user && user._id && token) {
+          navigate("/");
+        } else {
+          console.error("User ID or token is undefined in the response");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -27,35 +77,46 @@ const Login: React.FC = () => {
               Please enter your email and password.
             </p>
 
-            <form className="w-full px-1 py-2 mb-3">
+            <form className="w-full px-1 py-2 mb-3" onSubmit={handleSubmit}>
               <InputField
                 label="Email Address:"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Email Address"
+                autoComplete="off" 
               />
               <InputField
                 label="Password:"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Password"
+                autoComplete="off" 
               />
-            </form>
+            
 
             <div className="flex items-center gap-3 mb-9">
               <input
                 type="checkbox"
                 id="remember"
                 className="w-4 h-4 bg-formSecondaryText"
+                checked={checked}
+                onChange={handleChange}
               />
               <label htmlFor="remember" className="text-base font-normal">
                 Remember me
               </label>
             </div>
 
-            <div className="w-1/3 mb-8">
-              <Button text="Login" onClick={handleLogin} />
+            <div 
+            className="w-1/3 mb-8"
+            >
+              <Button text="Login" type="submit"/>
             </div>
+            </form>
 
             <div className="text-base font-bold text-formSecondaryText mb-12">
               New to Kind Earth Skincare?
