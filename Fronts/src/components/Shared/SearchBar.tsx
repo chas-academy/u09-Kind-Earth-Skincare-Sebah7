@@ -12,7 +12,7 @@ function SearchBar () {
   return (
     <>
 
-    <form action="searchForm" className="flex flex-grow flex-wrap items-center justify-between gap-x-1.5 gap-y-1.5 rounded-[40px] border border-solid border-x-black border-y-black bg-clayAsh pb-1.5 pl-3 pr-[17px] pt-2 focus-within:[box-shadow:0_0_4px_#1e40af] min-[362px]:flex-nowrap">
+    <form action="searchForm" className="flex flex-grow flex-wrap items-center justify-between gap-x-1.5 gap-y-1.5 rounded-[40px] border border-solid border-x-clayAsh border-y-clayAsh pb-1.5 pl-3 pr-[17px] pt-2 focus-within:[box-shadow:0_0_4px_#1e40af] min-[362px]:flex-nowrap">
       <button value={filterQuery} 
       onClick={() => setFilterQuery(filterQuery)}
       className="flex flex-col bg-transparent border-transparent">
