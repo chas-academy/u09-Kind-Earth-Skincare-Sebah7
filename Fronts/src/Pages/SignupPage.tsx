@@ -2,24 +2,65 @@ import React, { useState } from "react";
 import InputField from "../components/Auth/InputField";
 import Button from "../components/Auth/Button";
 import loginImage from "../assets/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [dob, setDob] = useState("");
+    const [checked, setChecked] = useState(false);
+      const navigate = useNavigate();
 
-  const handleRegister = () => {
-    // Handle registration logic
-    console.log("Register", {
-      firstName,
-      email,
-      password,
-      confirmPassword,
-      dob,
-    });
+  const [formData, setFormData] = useState({
+    first_name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    dateOfBirth: "",
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value} = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const [signupStatus, setSignupStatus] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked)
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+       
+    // console.log("Form Data being sent:", formData);
+
+    fetch("http://localhost:3000/api/users/register", 
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
+    .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setSignupStatus("success");
+          window.alert("Signup Failed. Try again.");
+          console.log(signupStatus);
+        } else {
+          setSignupStatus("error");
+          window.alert("Woho, you are signed up & redirected to login!");
+          navigate("/");
+        }
+  console.log("from DB:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        window.alert("Signup Failed. Try again.");
+      });
   };
 
   return (
@@ -37,44 +78,57 @@ const Register: React.FC = () => {
               Please enter details to create account.
             </p>
 
-            <form className="w-full px-1 py-2 mb-3">
+            <form className="w-full px-1 py-2 mb-3" onSubmit={handleSubmit}>
               <InputField
                 label="First Name"
-                type="name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                type="text"
+                id="first_name"
+                value={formData.first_name}
+                onChange={handleInputChange}
+                placeholder="First Name"
               />
               <InputField
                 label="Email Address:"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Email Address"
+                autoComplete="off" 
               />
               <InputField
                 label="Password:"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Password"
+                autoComplete="off" 
               />
               <InputField
                 label="Confirm Password:"
-                type="confirmpassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                type="password"
+                id="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                placeholder="Confirm Password"
               />
               <InputField
                 label="Date of birth:"
-                type="dob"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
+                type="date"
+                id="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={handleInputChange}
+                placeholder="Date of birth"
               />
-            </form>
 
-            <div className="flex items-center gap-3 mb-9">
+              <div className="flex items-center gap-3 mb-9">
               <input
                 type="checkbox"
-                id="remember"
+                id="privacy"
                 className="w-4 h-4 bg-formSecondaryText"
+                checked={checked}
+                onChange={handleChange}
               />
               <label htmlFor="remember" className="text-base font-normal">
                 Privacy Policy
@@ -82,8 +136,11 @@ const Register: React.FC = () => {
             </div>
 
             <div className="w-1/3 mb-8">
-              <Button text="Register" onClick={handleRegister} />
+              <Button text="Register" type="submit" />
             </div>
+
+            </form>
+
 
             <div className="text-base font-bold text-formSecondaryText mb-12">
               Already a User?
