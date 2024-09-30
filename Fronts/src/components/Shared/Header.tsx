@@ -12,15 +12,17 @@ const Header = () => {
           <LuUser className="text-primaryText rounded w-9 h-9" />
         </a>
 
-        <div className="text-primaryText text-2xl font-bold">
+        <h1>
+          <a href="/" className="no-underline text-primaryText text-2xl font-bold">
           Kind Earth Skincare
-        </div>
+          </a>
+        </h1>
 
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden w-9 h-9">
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden bg-transparent border-none">
           {isOpen ? (
-            <IoClose className="text-primaryText rounded" />
+            <IoClose className="text-primaryText w-9 h-9 rounded" />
           ) : (
-            <IoMenu className="text-primaryText rounded" />
+            <IoMenu className="text-primaryText w-9 h-9  rounded" />
           )}
         </button>
 
