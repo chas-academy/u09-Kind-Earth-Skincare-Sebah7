@@ -30,19 +30,21 @@ export const createProduct = async (req: CustomRequest, res: Response) => {
       return res.status(401).json({ error: "Authorization Required" });
     }
 
-    const newProduct = {
+    const newProduct: IProduct = {
       ...req.body,
       user_id: req.user._id as string,
     };
+    console.log("New Product:", newProduct);
 
     const savedProduct = await create(newProduct);
     res
       .status(201)
-      .json({ message: "Event created successfully", savedProduct });
+      .json({ message: "Product created successfully", savedProduct });
   } catch (error) {
     console.log("Error creating Product:", error);
     res.status(500).json({ message: "Product not created", error });
   }
+  console.log("Request body:", req.body);
 };
 
 export const getAllProducts = async (req: any, res: any): Promise<void> => {

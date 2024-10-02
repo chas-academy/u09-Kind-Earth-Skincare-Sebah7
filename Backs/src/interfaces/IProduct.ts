@@ -2,7 +2,7 @@ export interface IProduct extends Document {
   name: string;
   productImageUrl?: string;
   description: string;
-  categories:
+  categories: Array<
     | "cleanser"
     | "moisturizer"
     | "serum"
@@ -12,15 +12,13 @@ export interface IProduct extends Document {
     | "sunscreen"
     | "eye cream"
     | "lip care"
-    | "treatment";
-  criteria:
-    | "clean"
-    | "vegan"
-    | "cruelty-free"
-    | "BDS-approved"
-    | "Not-in-BDS-list";
-  skinTypes: "dry" | "oily" | "combination" | "sensitive" | "normal";
-  skinConcerns:
+    | "treatment"
+  >;
+  criteria: Array<
+    "clean" | "vegan" | "cruelty-free" | "BDS-approved" | "Not-in-BDS-list"
+  >;
+  skinTypes: Array<"dry" | "oily" | "combination" | "sensitive" | "normal">;
+  skinConcerns: Array<
     | "acne"
     | "aging"
     | "dark spots"
@@ -28,7 +26,8 @@ export interface IProduct extends Document {
     | "oiliness"
     | "pores"
     | "redness"
-    | "sensitivity";
+    | "sensitivity"
+  >;
   ingredients: string[];
   rating?: number;
   // reviews?: Review[];
