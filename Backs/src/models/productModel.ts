@@ -2,9 +2,9 @@ import mongoose, { Schema, model } from "mongoose";
 import { IProduct } from "../interfaces/IProduct";
 
 const ProductSchema = new Schema<IProduct>({
-  name: { type: String, required: true },
-  // productImageUrl: { type: String, required: true },
-  description: { type: String, required: true },
+  name: { type: String },
+  productImageUrl: { type: String },
+  description: { type: String },
   categories: [
     {
       type: String,
