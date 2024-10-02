@@ -25,6 +25,7 @@ const Login: React.FC = () => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
      console.log("Form submitted");
      
      fetch(
@@ -52,6 +53,10 @@ const Login: React.FC = () => {
         }
         const { user, token } = data;
         if (user && user._id && token) {
+
+          // To save token
+          localStorage.setItem("authToken", token);
+          
           navigate("/");
         } else {
           console.error("User ID or token is undefined in the response");
