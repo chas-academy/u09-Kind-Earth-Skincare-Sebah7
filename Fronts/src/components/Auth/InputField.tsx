@@ -5,10 +5,10 @@ interface InputFieldProps {
   type: string;
   value: string;
   id: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   autoComplete?: string;
   placeholder?: string;
-    isTextArea?: boolean;
+  isTextArea?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps> = ({ 
@@ -19,15 +19,15 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
   placeholder,
   autoComplete,
-    isTextArea = false,
+  isTextArea,
 }) => {
   return (
       <div className="w-full mt-7">
         {!isTextArea ? (
         <input
         type={type}
-        value={value}
         id={id}
+        value={value}
         onChange={onChange}
         placeholder={placeholder}
         autoComplete={autoComplete}
@@ -38,6 +38,7 @@ const InputField: React.FC<InputFieldProps> = ({
          ) : (
         <textarea
         value={value}
+        onChange={onChange}
           id={id}
           placeholder={placeholder}
           className="font-sans appearance-none border border-black h-32 w-full max-w-full py-2 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
