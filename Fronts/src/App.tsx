@@ -6,6 +6,7 @@ import Footer from "./components/Shared/Footer.tsx";
 import AdminDashboard from "./Pages/AdminDash.tsx";
 import bgImage from "./assets/bg.jpeg";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ContactPage from "./Pages/ContactPage.tsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Register />} />
               <Route path="/dashboard" element={<AdminDashboard />} />
+              <Route path="/contact" element={<ContactPage />}/>
             </Routes>
           </main>
 

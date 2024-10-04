@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   password: "",
  });
 
-  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value} = e.target;
     setFormData((prevState) => ({
       ...prevState,

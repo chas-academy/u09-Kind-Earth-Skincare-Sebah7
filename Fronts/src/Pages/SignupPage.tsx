@@ -16,7 +16,7 @@ const Register: React.FC = () => {
     dateOfBirth: "",
   })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value} = e.target;
     setFormData((prevState) => ({
       ...prevState,
