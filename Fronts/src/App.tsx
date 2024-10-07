@@ -4,6 +4,7 @@ import Welcome from "./Pages/WelcomePage.tsx";
 import Header from "./components/Shared/Header.tsx";
 import Footer from "./components/Shared/Footer.tsx";
 import AdminDashboard from "./Pages/AdminDash.tsx";
+import AboutPage from "./Pages/AboutPage.tsx";
 import bgImage from "./assets/bg.jpeg";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactPage from "./Pages/ContactPage.tsx";
@@ -26,6 +27,7 @@ function App() {
               <Route path="/signup" element={<Register />} />
               <Route path="/dashboard" element={<AdminDashboard />} />
               <Route path="/contact" element={<ContactPage />}/>
+              <Route path="/about" element={<AboutPage />} />
             </Routes>
           </main>
 
