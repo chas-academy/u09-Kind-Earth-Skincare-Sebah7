@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputField from "../components/Shared/InputField";
-import Button from "../components/Welcome/Button";
+import Button from "../components/Shared/Button";
 import doveImage from "../assets/dove.jpg";
 import axios from "axios";
 

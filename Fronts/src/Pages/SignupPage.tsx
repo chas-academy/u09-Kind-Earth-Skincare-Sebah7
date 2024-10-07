@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputField from "../components/Shared/InputField";
-import Button from "../components/Welcome/Button";
+import Button from "../components/Shared/Button";
 import loginImage from "../assets/login.jpg";
 import { Link, useNavigate } from "react-router-dom";
 
