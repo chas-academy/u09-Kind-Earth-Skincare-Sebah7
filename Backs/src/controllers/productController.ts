@@ -16,6 +16,18 @@ const fetchAll = async () => {
   return products;
 };
 
+const fetch = async (id: any) => {
+  const product = await Product.findById(id).populate("_id").exec();
+
+  if (!product) {
+    return null;
+  }
+
+  return {
+    ...product.toObject(),
+  };
+};
+
 const update = async (id: any, data: IProduct) => {
   return await Product.findByIdAndUpdate(id, data, { new: true });
 };
@@ -91,6 +103,19 @@ export const getProductByQuery = async (req: any, res: any): Promise<void> => {
     }
   } catch (error) {
     res.status(500).json({ message: `Failed to retrieve products: ${error}` });
+  }
+};
+
+export const getProductById = async (req: any, res: any) => {
+  try {
+    const id = req.params.id;
+    const product = await fetch(id);
+    if (!product) {
+      return res.status(400).json({ message: "Product not found" });
+    }
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: "Product not found" });
   }
 };
 
