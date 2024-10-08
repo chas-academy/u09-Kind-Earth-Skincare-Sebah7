@@ -109,7 +109,7 @@ const ingredientIndex = Number(name.split('-')[1]);
 
 
     try {
-      await axios.post('http://localhost:3000/api/products', formData,
+      await axios.post('https://u09-kind-earth-skincare-sebah7-1.onrender.com/api/products', formData,
          {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -35,7 +35,7 @@ const Register: React.FC = () => {
        
     // console.log("Form Data being sent:", formData);
 
-    fetch("http://localhost:3000/api/users/register", 
+    fetch("https://u09-kind-earth-skincare-sebah7-1.onrender.com/api/users/register", 
       {
         method: "POST",
         headers: {
