@@ -1,4 +1,4 @@
-import Button from '../Auth/Button';
+import Button from '../Shared/Button';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../Shared/SearchBar';
 import {motion} from 'framer-motion';

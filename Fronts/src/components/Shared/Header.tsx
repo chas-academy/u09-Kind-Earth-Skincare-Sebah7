@@ -55,8 +55,8 @@ useEffect(() => {
           <a href="/about" className="text-primaryText px-5 py-3">
             About
           </a>
-          <a href="/contact" className="text-primaryText px-5 py-3">
-            Contact
+          <a href="/products" className="text-primaryText px-5 py-3">
+            Products
           </a>
           <a href="/login" className="text-primaryText px-5 py-3">
             Login
@@ -86,10 +86,10 @@ useEffect(() => {
             About
           </a>
           <a
-            href="/contact"
+            href="/products"
             className="text-primaryText block text-center px-5 py-3"
           >
-            Contact
+            Products
           </a>
           <a
             href="/login"

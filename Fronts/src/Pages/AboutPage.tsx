@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Shared/Header';  // Assuming these components exist.
+import Header from '../components/Shared/Header'; 
 import SearchBar from '../components/Shared/SearchBar';
 import AboutSection from '../components/About/AboutSection';
 import aboutImage from '../assets/about.jpg';
