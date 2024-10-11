@@ -112,6 +112,46 @@ export const getProductByQuery = async (req: any, res: any): Promise<void> => {
   }
 };
 
+export const getEnumValues = async (req: any, res: any): Promise<void> => {
+  try {
+    const enums = {
+      categories: [
+        "cleanser",
+        "moisturizer",
+        "serum",
+        "toner",
+        "mask",
+        "exfoliator",
+        "sunscreen",
+        "eye cream",
+        "lip care",
+        "treatment",
+      ],
+      criteria: [
+        "clean",
+        "vegan",
+        "cruelty-free",
+        "BDS-approved",
+        "Not-in-BDS-list",
+      ],
+      skinTypes: ["dry", "oily", "combination", "sensitive", "normal"],
+      skinConcerns: [
+        "acne",
+        "aging",
+        "dark spots",
+        "dryness",
+        "oiliness",
+        "pores",
+        "redness",
+        "sensitivity",
+      ],
+    };
+    res.status(200).json(enums);
+  } catch (error) {
+    res.status(500).json({ message: `Failed to retrieve enums: ${error}` });
+  }
+};
+
 export const getProductById = async (req: any, res: any) => {
   try {
     const id = req.params.id;
