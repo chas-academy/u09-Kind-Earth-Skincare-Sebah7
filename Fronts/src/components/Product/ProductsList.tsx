@@ -9,6 +9,7 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
+    <>    
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {products.length === 0 ? (
         <p>No products found.</p>
@@ -16,6 +17,8 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
         products.map(product => <ProductItem key={product._id} product={product} />)
       )}
     </div>
+    </>
+
   );
 };
 
