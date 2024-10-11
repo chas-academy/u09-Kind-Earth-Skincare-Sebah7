@@ -1,47 +1,21 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { CiFilter, CiSearch} from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
-import { Product } from "../Admin/ProductForm.interface";
-import { useNavigate } from "react-router-dom";
 import FilterComponent from "../Product/ProductFilter";
+import { useSearchBar } from "../../hooks/useSearchBar";
 
-function SearchBar () {
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filters, setFilters] = useState<{ [key: string]: string }>({})
-  const [showFilters, setShowFilters] = useState<boolean>(false);
-  const navigate = useNavigate();
+function SearchBar() {
+  const {
+    searchQuery,
+    handleChange,
+    handleSubmit,
+    handleReset,
+    filters,
+    setFilters,
+  } = useSearchBar();
 
- const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
-const handleSubmit = async (event: React.FormEvent) => {
-  event.preventDefault();
-  if (!searchQuery&& Object.keys(filters).length === 0) return;
-
-  try {
-    const queryParams = new URLSearchParams({
-            ...filters,
-      name: searchQuery.toLowerCase(),
-    }).toString();
-
-    console.log("Query Params:", queryParams);
-
-    const response = await fetch(
-      `http://localhost:3000/api/products/query?${queryParams}`
-    );
-    const jsonData: { products: Product[] } = await response.json();
-    navigate("/search-results", { state: { searchResults: jsonData.products } });
-  } catch (error) {
-    console.error("Error fetching search results:", error);
-  }
-};
-  
-  const handleReset = () => {
-    setSearchQuery("");
-    setFilters({});
-  };
+    const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const toggleFilters = () => {
     setShowFilters((prevShowFilters) => !prevShowFilters);
