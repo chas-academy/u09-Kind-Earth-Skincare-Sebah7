@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactPage from "./Pages/ContactPage.tsx";
 import ProductsPage from "./Pages/ProductsPage.tsx";
 import ProductDetail from "./Pages/ProductDetail.tsx";
+import SearchResultsPage from "./components/Shared/SearchResult.tsx";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
               <Route path="/contact" element={<ContactPage />}/>
               <Route path="/about" element={<AboutPage />} />
               <Route path="/products" element={< ProductsPage/>} />
-        <Route path="/product/:id" element={<ProductDetail/>} />
+              <Route path="/product/:id" element={<ProductDetail/>} />
+                <Route path="/search-results" element={<SearchResultsPage />} />
             </Routes>
           </main>
 
