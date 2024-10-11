@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductList from '../components/Product/ProductsList';
 import { Product } from '../components/Admin/ProductForm.interface';
+import SearchBar from '../components/Shared/SearchBar';
 
 const ProductsPage: React.FC = () => {
 const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState<string | null>(null);
+const [error, setError] = useState<string | null>(null);
 
  const fetchProducts = async () => {
   try {
@@ -30,11 +31,19 @@ const [products, setProducts] = useState<Product[]>([]);
   }, []);
 
   return (
+    <>
+    {/* Search Area */}
+<div 
+className='relative top-15 left-1/2 transform -translate-x-1/2 w-3/4 z-[3]'>
+  <SearchBar />
+</div>
     <div className="mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Products</h1>
       {error && <p className="text-red-500">{error}</p>}
       <ProductList products={products} />
     </div>
+    </>
+
   );
 };
 

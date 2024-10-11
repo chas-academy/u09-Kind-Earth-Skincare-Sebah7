@@ -13,12 +13,14 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       <section
-        className="w-screen h-screen text-white">
+        className="w-full h-screen text-white overflow-x-hidden"
+        >
 
 {/* Search Area */}
-<div className='relative top-15 left-1/2 transform -translate-x-1/2 w-3/4 z-[3]'>
+<div 
+className='relative top-15 left-1/2 transform -translate-x-1/2 w-3/4 z-[3]'>
   <SearchBar />
 </div>
 
@@ -41,7 +43,7 @@ const Hero: React.FC = () => {
 
       </section>
       
-    </div>
+    </>
   );
 };
 
