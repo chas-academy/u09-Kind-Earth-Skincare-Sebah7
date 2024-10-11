@@ -70,9 +70,9 @@ export const getAllProducts = async (req: any, res: any): Promise<void> => {
 
 export const getProductByQuery = async (req: any, res: any): Promise<void> => {
   try {
-    const { categories, criteria, skinTypes, skinConcerns } = req.query;
+    const { categories, criteria, skinTypes, skinConcerns, name } = req.query;
 
-    let query: { [key: string]: string | undefined } = {};
+    let query: { [key: string]: any } = {};
 
     if (categories) {
       query.categories = categories;
@@ -89,6 +89,12 @@ export const getProductByQuery = async (req: any, res: any): Promise<void> => {
     if (skinConcerns) {
       query.skinConcerns = skinConcerns;
     }
+
+    if (name) {
+      query.name = { $regex: new RegExp(name, "i") };
+    }
+
+    console.log("Received Query Params:", query);
 
     const products = await fetchByQuery(query);
 
