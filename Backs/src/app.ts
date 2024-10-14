@@ -6,6 +6,7 @@ import authRouter from "./routes/userRoutes";
 import productRouter from "./routes/productRoutes";
 import contactRoutes from "./routes/contactRoutes";
 import path from "path";
+import RoutineRouter from "./routes/routineRoutes";
 
 const app: Express = express();
 
@@ -18,6 +19,7 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use("/api/users", authRouter);
 app.use("/api/products", productRouter);
 app.use("/api/contact", contactRoutes);
+app.use("/api/routine", RoutineRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
