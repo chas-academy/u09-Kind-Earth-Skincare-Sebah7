@@ -47,7 +47,7 @@ if (!validateEmail(contactData.email)) {
     setSuccess('');
 
    try {
-      const response = await axios.post('https://u09-kind-earth-skincare-sebah7-1.onrender.com/api/contact/contact', contactData, {
+      const response = await axios.post('https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/contact/contact', contactData, {
         headers: {
       'Content-Type': 'application/json'
    },

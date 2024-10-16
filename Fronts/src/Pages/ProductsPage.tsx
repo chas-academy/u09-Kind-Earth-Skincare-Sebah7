@@ -10,7 +10,7 @@ const [error, setError] = useState<string | null>(null);
 
  const fetchProducts = async () => {
   try {
-    const response = await axios.get('https://u09-kind-earth-skincare-sebah7-1.onrender.com/api/products');
+    const response = await axios.get('https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/products');
     console.log('Fetched products:', response.data);
     if (Array.isArray(response.data)) {
       setProducts(response.data);
