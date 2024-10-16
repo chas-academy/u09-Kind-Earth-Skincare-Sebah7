@@ -10,8 +10,14 @@ import RoutineRouter from "./routes/routineRoutes";
 
 const app: Express = express();
 
+const corsOptions = {
+  origin: "https://kindearthskincare.netlify.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
