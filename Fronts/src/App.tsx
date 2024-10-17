@@ -11,6 +11,7 @@ import ContactPage from "./Pages/ContactPage.tsx";
 import ProductsPage from "./Pages/ProductsPage.tsx";
 import ProductDetail from "./Pages/ProductDetail.tsx";
 import SearchResultsPage from "./components/Shared/SearchResult.tsx";
+import QuizPage from "./Pages/QuizPage.tsx";
 
 function App() {
   return (
@@ -33,7 +34,8 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/products" element={< ProductsPage/>} />
               <Route path="/product/:id" element={<ProductDetail/>} />
-                <Route path="/search-results" element={<SearchResultsPage />} />
+              <Route path="/search-results" element={<SearchResultsPage />} />
+              <Route path="/quiz" element={< QuizPage />} />
             </Routes>
           </main>
 
