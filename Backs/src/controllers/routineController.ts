@@ -11,17 +11,20 @@ const generateProductRecommendations = async (
 
   userAnswers.forEach((answer) => {
     switch (answer.questionId) {
+      // case "ageGroup":
+      //   filters.ageGroup = answer.selectedOption.id;
+      //   break;
       case "skinType":
-        filters.skinTypes = answer.selectedOption.value;
+        filters.skinTypes = answer.selectedOption.id;
         break;
       case "skinConcern":
-        filters.skinConcerns = answer.selectedOption.value;
+        filters.skinConcerns = answer.selectedOption.id;
         break;
       case "category":
-        filters.categories = answer.selectedOption.value;
+        filters.categories = answer.selectedOption.id;
         break;
       case "criteria":
-        filters.criteria = answer.selectedOption.value;
+        filters.criteria = answer.selectedOption.id;
         break;
       default:
         break;
