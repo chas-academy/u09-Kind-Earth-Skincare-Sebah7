@@ -22,6 +22,12 @@ export default {
       fontSize: {
         inherit: "inherit",
       },
+      backdropBlur: {
+        glass: '10px',
+      },
+      backgroundColor: {
+        'glass': 'rgba(255, 255, 255, 0.3)',
+      },
     },
   },
   corePlugins: {

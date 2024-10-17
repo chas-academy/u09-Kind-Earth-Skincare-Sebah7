@@ -79,7 +79,7 @@ if (!validateEmail(contactData.email)) {
   return (
 <div className=" flex flex-col md:flex-row rounded-lg border-solid border-clayAsh px-1 py-1">
       <div
-        className={`flex-1 flex flex-grow flex-col items-center gap-y-3 rounded-l-md px-2`}>
+        className={`flex-1 flex flex-grow flex-col items-center gap-y-3 rounded-l-md px-2 bg-glass backdrop-blur-glass`}>
         <div className="w-full max-w-xs">
           <div className="relative h-3/4 flex flex-col items-center">
     <div className={`text-5xl font-bold text-formPrimaryText mt-12`}>
@@ -133,7 +133,7 @@ if (!validateEmail(contactData.email)) {
           alt=""
           className="object-cover w-full h-full rounded-r-md"
         />
-      </div>
+</div>
 
     </div>
   );

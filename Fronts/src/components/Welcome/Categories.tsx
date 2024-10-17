@@ -15,7 +15,7 @@ const Category: React.FC<CategoryProps> = ({ title, type, onViewAll }) => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/products/enums");
+        const response = await fetch("https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/products/enums");
         const data = await response.json();
         setItems(
           type === "categories"
