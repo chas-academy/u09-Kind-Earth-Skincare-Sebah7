@@ -10,8 +10,13 @@ import RoutineRouter from "./routes/routineRoutes";
 
 const app: Express = express();
 
+const allowedOrigins = [
+  "https://kindearthskincare.netlify.app",
+  "http://localhost:5173",
+];
+
 const corsOptions = {
-  origin: "https://kindearthskincare.netlify.app",
+  origin: allowedOrigins,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
