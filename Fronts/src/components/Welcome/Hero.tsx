@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('../../Pages/QuizPage');
+    navigate('/quiz');
   };
 
   return (
