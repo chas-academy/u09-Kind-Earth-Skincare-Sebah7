@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchBar } from "../../hooks/useSearchBar";
+import { PacmanLoader } from "react-spinners";
 
 interface CategoryProps {
   title: string;
@@ -58,7 +59,7 @@ const Category: React.FC<CategoryProps> = ({ title, type, onViewAll }) => {
       {/* Category grid */}
       <div className="grid grid-cols-3 gap-6">
         {loading ? (
-          <p>Loading...</p>
+          <PacmanLoader color="#91b553" />
         ) : (
         limitedItems.map((item, index) => (
           <div
