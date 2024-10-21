@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Button from "../Shared/Button";
+import Button from "../../Shared/Button";
 import { ProductFormData } from './ProductForm.interface';
 
 const categoriesEnum = [

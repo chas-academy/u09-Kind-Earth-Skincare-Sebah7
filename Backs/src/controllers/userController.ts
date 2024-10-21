@@ -1,5 +1,6 @@
 import User from "../models/userModel";
 import { IUser } from "../interfaces/IUser";
+import { error } from "console";
 
 export const registerUser = async (user: Partial<IUser>) => {
   console.log("Incoming user registration:", user);
@@ -103,6 +104,14 @@ export const logoutUser = async (req: any) => {
   } catch (error) {
     console.error("Logout Error:", error); // Detailed error logging
 
+    return { error: error };
+  }
+};
+
+export const getUser = async (id: string) => {
+  try {
+    return await User.findById(id);
+  } catch (error) {
     return { error: error };
   }
 };

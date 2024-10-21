@@ -25,17 +25,16 @@ const Login: React.FC = () => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-     console.log("Form submitted");
-     
+         
      fetch(
-      "https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/users/login",
+      "http://localhost:3000/api/users/login",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        
       }
     )
       .then((response) => {
@@ -43,21 +42,29 @@ const Login: React.FC = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
+        
       })
       .then((data) => {
               console.log("Response data:", data);
         if (data.error) {
           console.error("Login error:", data.error);
-          // Handle the error
           return;
         }
         const { user, token } = data;
         if (user && user._id && token) {
-
-          // To save token
+           console.log("User role Backs:", user.role);
           localStorage.setItem("authToken", token);
+          localStorage.setItem("userData", JSON.stringify(user));
           
-          navigate("/");
+
+
+          const previousPage = localStorage.getItem('previousPage');
+          if (previousPage) {
+            localStorage.removeItem('previousPage');
+            navigate(previousPage);
+          } else {
+            navigate("/dashboard");
+          }
         } else {
           console.error("User ID or token is undefined in the response");
         }

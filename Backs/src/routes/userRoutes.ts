@@ -4,6 +4,7 @@ import {
   loginUser,
   registerUser,
   logoutUser,
+  getUser,
 } from "../controllers/userController";
 import {
   auth,
@@ -11,6 +12,7 @@ import {
   moderator,
   CustomRequest,
 } from "../middlewares/authMiddleware";
+import { getDefaultResultOrder } from "dns/promises";
 
 const router = express.Router();
 
@@ -48,10 +50,10 @@ router.post("/login", async (req, res) => {
 });
 
 // Fetch logged in user
-router.get("/me", auth, async (req: CustomRequest, res) => {
-  return res.status(200).json({
-    user: req.user,
-  });
+router.get("/:id", auth, async (req, res) => {
+  const id = req.params.id;
+  const user = await getUser(id);
+  res.status(200).json(user);
 });
 
 // Logout user

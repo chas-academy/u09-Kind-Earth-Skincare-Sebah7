@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Shared/Button";
+import { PacmanLoader } from "react-spinners";
 
 interface FilterComponentProps {
   filters: { [key: string]: string };
@@ -67,7 +68,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({filters, setFilters, h
   };
 
   if (loading) {
-    return <p>Loading filters...</p>;
+    return <PacmanLoader color="#91b553" />;
   }
 
 return (
