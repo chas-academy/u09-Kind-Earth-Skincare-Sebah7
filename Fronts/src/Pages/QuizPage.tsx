@@ -3,10 +3,10 @@ import QuestionComponent from "../components/Quiz/QuizOption";
 import NextButtonComponent from "../components/Quiz/NextBackbtn";
 import RecommendationComponent from "../components/Quiz/QuizResult";
 import { UserAnswer, ProductRecommendation } from "./../../../Backs/src/interfaces/IRoutine";
-import axios from "axios";
 import routineImage from "../assets/routine.jpg";
 import questions from "../components/Quiz/QuizQuitions";
 import ProgressBar from "../components/Quiz/QuizProgress";
+import axiosInstance from "../utils/axiosInstance";
 
 const QuizPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -67,7 +67,7 @@ const [mainConcern, setMainConcern] = useState<string>("");
 
   const submitAnswers = async () => {
     try {
-      const response = await axios.post("https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/routine/routine-match", { answers: userAnswers });
+      const response = await axiosInstance.post("/routine/routine-match", { answers: userAnswers });
       setRecommendations(response.data);
     } catch (error) {
       console.error("Error submitting answers:", error);

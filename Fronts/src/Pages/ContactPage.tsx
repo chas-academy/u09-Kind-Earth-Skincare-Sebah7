@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputField from "../components/Shared/InputField";
 import Button from "../components/Shared/Button";
 import doveImage from "../assets/dove.jpg";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 
 const ContactPage: React.FC = () => { 
 
@@ -47,7 +47,7 @@ if (!validateEmail(contactData.email)) {
     setSuccess('');
 
    try {
-      const response = await axios.post('https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/contact/contact', contactData, {
+      const response = await axiosInstance.post('/contact/contact', contactData, {
         headers: {
       'Content-Type': 'application/json'
    },

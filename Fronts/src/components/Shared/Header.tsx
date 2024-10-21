@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { LuUser } from "react-icons/lu";
+import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const {user, logout} = useAuth();
+  const navigate = useNavigate();
 
 useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +25,22 @@ useEffect(() => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axiosInstance.post('/users/logout', 
+        {}, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+        },
+      });
+      logout();
+      navigate('/login');
+    } catch (error) {
+      console.error("Logout Error:", error);
+    }
+  };
 
   return (
     <nav className={`p-2 fixed top-0 left-0 mb-4 w-full z-40 transition-colors duration-300 ${isScrolled ? 'bg-summerGreen' : 'bg-transparent'}`}>
@@ -55,9 +76,20 @@ useEffect(() => {
           <a href="/products" className="text-primaryText px-5 py-3 no-underline">
             Products
           </a>
+          {user ? (
+            <>
+              <a href="/dashboard" className="text-primaryText px-5 py-3 no-underline">
+                Dashboard
+              </a>
+              <button onClick={handleLogout} className="text-primaryText px-5 py-3 no-underline">
+                Logout
+              </button>
+            </>
+          ) : (
           <a href="/login" className="text-primaryText px-5 py-3 no-underline">
             Login
           </a>
+          )}
         </div>
       </div>
 
@@ -88,12 +120,23 @@ useEffect(() => {
           >
             Products
           </a>
+          {user ? (
+            <>
+              <a href="/dashboard" className="text-primaryText block text-center px-5 py-3 no-underline">
+                Dashboard
+              </a>
+              <button onClick={handleLogout} className="text-primaryText block text-center px-5 py-3 no-underline">
+                Logout
+              </button>
+            </>
+          ) : (
           <a
             href="/login"
             className="text-primaryText block text-center px-5 py-3 no-underline"
           >
             Login
           </a>
+          )}
         </div>
       )}
     </nav>

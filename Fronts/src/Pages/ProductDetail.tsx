@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { Product } from '../components/Admin/ProductForm.interface';
+import { Product } from '../components/Dashboard/Admin/ProductForm.interface';
 import Button from '../components/Shared/Button';
+import axiosInstance from '../utils/axiosInstance';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams(); 
@@ -17,7 +17,7 @@ const ProductDetail: React.FC = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/products/${id}`);
+        const response = await axiosInstance.get(`/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product details:', error);
