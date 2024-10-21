@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ProductList from '../components/Product/ProductsList';
-import { Product } from '../components/Admin/ProductForm.interface';
+import { Product } from '../components/Dashboard/Admin/ProductForm.interface';
 import SearchBar from '../components/Shared/SearchBar';
+import axiosInstance from '../utils/axiosInstance';
 
 const ProductsPage: React.FC = () => {
 const [products, setProducts] = useState<Product[]>([]);
@@ -10,7 +10,7 @@ const [error, setError] = useState<string | null>(null);
 
  const fetchProducts = async () => {
   try {
-    const response = await axios.get('https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/products');
+    const response = await axiosInstance.get('/products');
     console.log('Fetched products:', response.data);
     if (Array.isArray(response.data)) {
       setProducts(response.data);

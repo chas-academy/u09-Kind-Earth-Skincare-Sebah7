@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Button from "../../Shared/Button";
 import { ProductFormData } from './ProductForm.interface';
+import axiosInstance from '../../../utils/axiosInstance';
 
 const categoriesEnum = [
   "cleanser", "moisturizer", "serum", "toner", "mask",
@@ -109,7 +109,7 @@ const ingredientIndex = Number(name.split('-')[1]);
 
 
     try {
-      await axios.post('https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/products', formData,
+      await axiosInstance.post('/products', formData,
          {
       headers: {
         Authorization: `Bearer ${token}`,
