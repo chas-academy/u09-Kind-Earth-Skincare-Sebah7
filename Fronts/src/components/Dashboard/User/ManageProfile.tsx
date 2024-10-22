@@ -81,10 +81,17 @@ const ManageProfile: React.FC = () => {
   };
 
   const handleDeleteAccount = async () => {
+    
     const userData = localStorage.getItem("userData");
-    if (userData) {
+    const token = localStorage.getItem("authToken");
+    if (userData && token) {
       try {
-        await axiosInstance.delete('/users/me');
+        await axiosInstance.delete('/users/me', {
+           headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      });
         localStorage.removeItem("userData");
         navigate('/dashboard');
       } catch (error) {
