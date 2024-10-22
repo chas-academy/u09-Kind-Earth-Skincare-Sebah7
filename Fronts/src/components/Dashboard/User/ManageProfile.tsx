@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../../utils/axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../Shared/Button';
 
 const ManageProfile: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -94,13 +95,19 @@ const ManageProfile: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Manage Profile</h2>
+    <>
+    <div className="flex justify-center mt-2 px-8">
       {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className="max-w-2xl" onSubmit={handleSubmit}>
+        <div className="flex flex-wrap border shadow rounded-lg px-8 bg-glass">
+          <h2 className="text-xl text-primaryText dark:text-formPrimaryText-300 pb-2">Profile Update:</h2>
+
+      <div className="flex flex-col gap-2 w-full border-gray-400">
         <div>
-          <label htmlFor="first_name">First Name</label>
+
+          <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="first_name">First Name</label>
           <input
+            className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
             type="text"
             name="first_name"
             value={formData.first_name}
@@ -108,9 +115,11 @@ const ManageProfile: React.FC = () => {
             required
           />
         </div>
+
         <div>
-          <label htmlFor="email">Email</label>
+          <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="email">Email</label>
           <input
+                className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
             type="email"
             name="email"
             value={formData.email}
@@ -118,9 +127,11 @@ const ManageProfile: React.FC = () => {
             required
           />
         </div>
+
         <div>
-          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="dateOfBirth">Date of Birth</label>
           <input
+                className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
             type="date"
             name="dateOfBirth"
             value={formData.dateOfBirth}
@@ -128,40 +139,55 @@ const ManageProfile: React.FC = () => {
             required
           />
         </div>
-        <div className="mb-4">
-          <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700">Current Password</label>
+
+        <div>
+          <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="currentPassword" 
+          >Current Password</label>
           <input
+            className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
             type="password"
             name="currentPassword"
             value={formData.currentPassword}
             onChange={handleChange}
-            className="mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
           />
           </div>
+
         <div>
-          <label htmlFor="password">New Password</label>
+          <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="password">New Password</label>
           <input
+                className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
           />
         </div>
+
         <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="confirmPassword">Confirm Password</label>
           <input
+            className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Update Profile</button>
-      </form>
-      <button onClick={handleDeleteAccount} style={{ marginTop: '20px', color: 'red' }}>
-        Delete Account
-      </button>
+        
+        <div className="flex justify-end">
+          <div className=' py-1.5 px-3 m-1'>
+                      <Button text="Update Profile" type="submit" />
+
+          </div>
+      </div>
+      </div>
+      </div>
+      <div className="mt-4 text-red-600">
+      <Button text="Delete Account" onClick={handleDeleteAccount} type="submit" />
+      </div>
+      </form>  
     </div>
+    </>
   );
 };
 
