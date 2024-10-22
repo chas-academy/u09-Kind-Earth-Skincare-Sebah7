@@ -5,6 +5,8 @@ import {
   registerUser,
   logoutUser,
   getUser,
+  deleteOwnAccount,
+  updateUser,
 } from "../controllers/userController";
 import {
   auth,
@@ -12,7 +14,6 @@ import {
   moderator,
   CustomRequest,
 } from "../middlewares/authMiddleware";
-import { getDefaultResultOrder } from "dns/promises";
 
 const router = express.Router();
 
@@ -76,6 +77,26 @@ router.post("/logoutall", auth, async (req: CustomRequest, res) => {
   return res.status(200).json({
     message: "User logged out from all devices successfully.",
   });
+});
+
+router.delete("/me", auth, deleteOwnAccount);
+
+router.put("/:id", auth, async (req, res) => {
+  try {
+    const id = req.params.id;
+    let userData = req.body;
+
+    if (req.file) {
+      userData.profileImageUrl = req.file.filename;
+    }
+
+    const updatedUser = await updateUser(id, userData);
+
+    res.status(200).json({ message: "Update succeeded", updatedUser });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 export default router;

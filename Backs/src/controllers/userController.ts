@@ -1,6 +1,8 @@
 import User from "../models/userModel";
 import { IUser } from "../interfaces/IUser";
-import { error } from "console";
+import bcrypt from "bcrypt";
+import { CustomRequest } from "../middlewares/authMiddleware";
+import { Response } from "express";
 
 export const registerUser = async (user: Partial<IUser>) => {
   console.log("Incoming user registration:", user);
@@ -111,6 +113,58 @@ export const logoutUser = async (req: any) => {
 export const getUser = async (id: string) => {
   try {
     return await User.findById(id);
+  } catch (error) {
+    return { error: error };
+  }
+};
+
+export const deleteOwnAccount = async (req: CustomRequest, res: Response) => {
+  try {
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ message: "Authentication failed. User not found." });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    await User.findByIdAndDelete(req.user._id);
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user's account:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const updateUser = async (id: string, data: Partial<IUser>) => {
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return { error: "User not found" };
+    }
+
+    if (data.password) {
+      if (!data.currentPassword) {
+        return { error: "Current password is required" };
+      }
+
+      const isMatch = await bcrypt.compare(data.currentPassword, user.password);
+      if (!isMatch) {
+        return { error: "Current password is incorrect" };
+      }
+
+      // Hash the new password
+      const salt = await bcrypt.genSalt(10);
+      data.password = await bcrypt.hash(data.password, salt);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+    return updatedUser;
   } catch (error) {
     return { error: error };
   }
