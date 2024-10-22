@@ -124,6 +124,7 @@ const ingredientIndex = Number(name.split('-')[1]);
   };
 
   return (
+    <>
 <form onSubmit={handleSubmit} className="p-8 rounded-lg shadow-lg max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
 
   <h2 className="col-span-2 text-center text-2xl font-semibold text-gray-700">Add a Product</h2>
@@ -270,7 +271,7 @@ const ingredientIndex = Number(name.split('-')[1]);
         className="block text-sm font-medium text-gray-700">
           Ingredients</label>
           {[...Array(ingredientsCount)].map((_, index) => (
-            <div>
+            <div key={index}>
         <input
           type="text"
         name={`ingredients-${index}`}
@@ -329,6 +330,7 @@ className="block text-sm font-medium text-gray-700">
 </div>
 
     </form>
+    </>
   );
 };
 
