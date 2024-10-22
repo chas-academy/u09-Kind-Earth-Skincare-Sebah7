@@ -19,9 +19,13 @@ const TabPanel: React.FC<TabPanelProps> = ({ children, value, index, ...other })
     >
       {value === index && (
         <Box sx={{ p: 3, height: '100%' }}>
+<<<<<<< HEAD
           <Typography>
             <div>{children}</div>
             </Typography>
+=======
+          <Typography>{children}</Typography>
+>>>>>>> f241765ecc4b94d270451ea4c72a045d17b9e795
         </Box>
       )}
     </div>
