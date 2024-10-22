@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Product } from '../Admin/ProductForm.interface';
+import { Product } from '../Dashboard/Admin/ProductForm.interface';
 
 interface ProductItemProps {
   product: Product;
