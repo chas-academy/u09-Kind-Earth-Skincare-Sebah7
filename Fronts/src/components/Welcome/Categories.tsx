@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchBar } from "../../hooks/useSearchBar";
 import { PacmanLoader } from "react-spinners";
+import catImage from '../../assets/category.jpg';
 
 interface CategoryProps {
   title: string;
@@ -64,9 +65,15 @@ const Category: React.FC<CategoryProps> = ({ title, type, onViewAll }) => {
         limitedItems.map((item, index) => (
           <div
             key={index}
-            className="bg-white h-40 rounded-md flex justify-center items-center shadow-md"
-          onClick={() => handleCategoryClick(item)}
+            className="h-40 rounded-md flex justify-center items-center shadow-md"
+          style={{
+                backgroundImage: `url(${catImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            onClick={() => handleCategoryClick(item)}
           >
+
             <p className="font-semibold italic text-lg">{item}</p>
           </div>
           ))
