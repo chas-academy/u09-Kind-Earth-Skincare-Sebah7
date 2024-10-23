@@ -8,7 +8,7 @@ export interface IUser extends Document {
   currentPassword?: string;
   tokens: { token: string }[];
   role: number;
-  savedProducts: string[];
+  // savedProducts: string[];
   routines: Types.ObjectId[];
 }
 
