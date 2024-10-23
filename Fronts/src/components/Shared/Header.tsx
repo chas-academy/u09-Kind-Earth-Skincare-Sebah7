@@ -28,13 +28,7 @@ useEffect(() => {
 
   const handleLogout = async () => {
     try {
-      await axiosInstance.post('/users/logout', 
-        {}, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-        },
-      });
+      await axiosInstance.post('/users/logout', {},);
       logout();
       navigate('/login');
     } catch (error) {

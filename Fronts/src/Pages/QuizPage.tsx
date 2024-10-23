@@ -105,7 +105,7 @@ const [mainConcern, setMainConcern] = useState<string>("");
       ) : (
         <RecommendationComponent
           mainConcern={mainConcern}
-          products={recommendations.map(rec => ({ name: rec.productName, category: rec.reason }))}
+          products={recommendations.map(rec => ({ name: rec.productName, category: rec.reason, _id: rec.productId}))}
           onAddToRoutine={() => alert("Products added to routine")}
         />
       )}

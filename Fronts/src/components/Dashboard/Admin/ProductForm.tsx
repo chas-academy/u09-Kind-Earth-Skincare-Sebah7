@@ -29,7 +29,6 @@ const ProductForm: React.FC = () => {
     skinTypes: [],
     skinConcerns: [],
     ingredients: [],
-    price: '',
     productImageUrl: '',
   });
 
@@ -105,18 +104,8 @@ const ingredientIndex = Number(name.split('-')[1]);
         return;
       }
 
-  console.log("Form Data before submission:", formData);
-
-
     try {
-      await axiosInstance.post('/products', formData,
-         {
-      headers: {
-        Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-
-      },
-    });
+      await axiosInstance.post('/products', formData);
       alert('Product created successfully!');
     } catch (error) {
       console.error('Error creating product:', error);
@@ -124,6 +113,7 @@ const ingredientIndex = Number(name.split('-')[1]);
   };
 
   return (
+    <>
 <form onSubmit={handleSubmit} className="p-8 rounded-lg shadow-lg max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
 
   <h2 className="col-span-2 text-center text-2xl font-semibold text-gray-700">Add a Product</h2>
@@ -250,27 +240,14 @@ const ingredientIndex = Number(name.split('-')[1]);
 </div>
 
 <div className="bg-white p-6 rounded-lg shadow-md">
-  <h3 className="text-xl font-semibold text-gray-800 mb-4">Pricing and Ingridients</h3>
-        <div className="mb-4">
-        <label htmlFor="price"
-        className="block text-sm font-medium text-gray-700">
-          Price</label>
-        <input
-          type="number"
-          name="price"
-          value={formData.price}
-          onChange={handleChange}
-          required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
-        />
-        </div>
+  <h3 className="text-xl font-semibold text-gray-800 mb-4">Ingridients</h3>
 
 <div className="mb-4">
         <label htmlFor="ingredients"
         className="block text-sm font-medium text-gray-700">
           Ingredients</label>
           {[...Array(ingredientsCount)].map((_, index) => (
-            <div>
+            <div key={index}>
         <input
           type="text"
         name={`ingredients-${index}`}
@@ -329,6 +306,7 @@ className="block text-sm font-medium text-gray-700">
 </div>
 
     </form>
+    </>
   );
 };
 

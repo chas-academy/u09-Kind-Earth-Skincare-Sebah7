@@ -3,10 +3,14 @@ import InputField from "../components/Shared/InputField";
 import Button from "../components/Shared/Button";
 import loginImage from "../assets/login.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const Register: React.FC = () => {
-    const [checked, setChecked] = useState(false);
-      const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -63,6 +67,10 @@ const Register: React.FC = () => {
       });
   };
 
+  const togglePasswordVisibility = () => {
+  setPasswordVisible(!passwordVisible);
+};
+
   return (
     <div className=" flex flex-col md:flex-row rounded-lg border-solid border-clayAsh px-1 py-1">
       <div
@@ -96,23 +104,41 @@ const Register: React.FC = () => {
                 placeholder="Email Address"
                 autoComplete="off" 
               />
+              <div className="relative">
               <InputField
                 label="Password:"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 id="password"
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Password"
                 autoComplete="off" 
               />
+              <button
+    type="button"
+    onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 flex items-center px-2 bg-transparent border-transparent"
+  >
+    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+  </button>
+  </div>
+  <div className="relative">
               <InputField
                 label="Confirm Password:"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 id="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 placeholder="Confirm Password"
               />
+              <button
+    type="button"
+    onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 flex items-center px-2 bg-transparent border-transparent"
+  >
+    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+  </button>
+  </div>
               <InputField
                 label="Date of birth:"
                 type="date"

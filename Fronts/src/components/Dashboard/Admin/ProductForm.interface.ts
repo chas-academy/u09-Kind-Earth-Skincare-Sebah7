@@ -6,7 +6,6 @@ export interface ProductFormData {
   skinTypes: string[];
   skinConcerns: string[];
   ingredients: string[];
-  price: string;
   productImageUrl?: string | null;
 }
 

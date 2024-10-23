@@ -127,3 +127,41 @@ Followed the step on this [Guide](https://blog.logrocket.com/how-to-set-up-node-
 ### MongoDB
 
 ### Insomnia
+
+
+## Iteration plan and steps to follow
+
+What I need to follow according to the mål:
+
+RESTful API
+Work on all modern browsers
+Must be responsive to all screens
+
+Must have features:
+Register
+Login
+Search
+Admin - CRUD
+
+Extra:
+Admin can grant permissions based on user roles
+Admin can CRUD user roles
+Admin send out emails from dashboards
+
+[**Design requirements:**](https://docs.google.com/document/d/1GxUSFX8hcJPLRGmGkvIWJfAz0OJQkvCu1YXBnacw2CE/edit#heading=h.t1pll68q4w9x)
+
+[User study](https://www.digg.se/webbriktlinjer/tillganglighet/anvandarcentrerat-arbetssatt-och-tjanstedesign) (Minimum 5 persons)
+Personas(Minimum 1 based on user study)
+Stories(based on person)
+Based on the above we get a sitemap and prototype (Lo-fi is good)
+
+More:
+Deployment must support Node.JS, think about CORS and HTTPS.
+Database in the form of documentation database MongoDB
+Use Node.JS and Express
+React or Angular
+Availability for use as well as PWA
+Documentation for API through Insomnia
+Extra: Documentation of everything
+Code standard: [JS](https://airbnb.io/projects/javascript/) and [CSS](https://github.com/airbnb/css)
+[Style guide](https://vicvijayakumar.com/blog/eslint-airbnb-style-guide-prettier/)
