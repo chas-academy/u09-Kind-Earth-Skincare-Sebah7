@@ -1,9 +1,10 @@
 import User from "../models/userModel";
 import { IUser } from "../interfaces/IUser";
 import { CustomRequest } from "../middlewares/authMiddleware";
-import { Response } from "express";
+import { Request, Response } from "express";
 import Product from "../models/productModel";
 import RoutineMatcherModel from "../models/routineModel";
+import { Types } from "mongoose";
 
 export const registerUser = async (user: Partial<IUser>) => {
   console.log("Incoming user registration:", user);
@@ -116,6 +117,42 @@ export const getUser = async (id: string) => {
     return await User.findById(id);
   } catch (error) {
     return { error: error };
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const users = await User.find({});
+    return users;
+  } catch (error) {
+    console.error("Error retrieving users:", error);
+    throw error;
+  }
+};
+
+export const updateUserRole = async (req: CustomRequest, res: Response) => {
+  try {
+    const { role } = req.body;
+    const { userId } = req.params;
+    const validRoles = [0, 1, 2];
+
+    if (!validRoles.includes(role)) {
+      return res.status(400).json({ error: "Invalid role" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.role = role;
+    await user.save();
+
+    console.log("User role updated:", user);
+    res.status(200).json({ message: "User role updated successfully", user });
+  } catch (error) {
+    console.error("Error updating user role:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import VerticalTabs from '../components/Dashboard/Tab/TabVertical';
 import UpdateProductForm from '../components/Dashboard/Admin/UpdateProduct';
 import DeleteProductForm from '../components/Dashboard/Admin/DeletedProductForm';
+import AdminUserManagement from '../components/Dashboard/Admin/RolesManegment';
 
 const AdminDashboard = () => {
 
@@ -30,6 +31,7 @@ const onUpdate = () => {
     { label: 'Create Product', content: <ProductForm /> },
     { label: 'Update Product', content: <UpdateProductForm onUpdate={onUpdate} /> },
     { label: 'Delete Product', content: < DeleteProductForm/> },
+    { label: 'User Roles', content: <AdminUserManagement /> },
   ];
   
   return (
