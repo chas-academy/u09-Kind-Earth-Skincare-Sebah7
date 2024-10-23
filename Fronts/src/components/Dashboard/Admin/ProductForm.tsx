@@ -105,18 +105,8 @@ const ingredientIndex = Number(name.split('-')[1]);
         return;
       }
 
-  console.log("Form Data before submission:", formData);
-
-
     try {
-      await axiosInstance.post('/products', formData,
-         {
-      headers: {
-        Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-
-      },
-    });
+      await axiosInstance.post('/products', formData);
       alert('Product created successfully!');
     } catch (error) {
       console.error('Error creating product:', error);

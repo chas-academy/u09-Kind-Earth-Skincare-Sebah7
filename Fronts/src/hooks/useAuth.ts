@@ -37,12 +37,7 @@ export const useAuth = () => {
       if (id && token) {
         const fetchUser = async () => {
           try {
-            const response = await axiosInstance.get(`/users/${id}`, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            });
+            const response = await axiosInstance.get(`/users/${id}`);
             console.log("useAuth - Fetched user:", response.data);
             setUser(response.data);
           } catch (error) {

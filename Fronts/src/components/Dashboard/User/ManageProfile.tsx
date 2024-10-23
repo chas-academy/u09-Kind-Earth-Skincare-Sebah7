@@ -22,13 +22,7 @@ const ManageProfile: React.FC = () => {
       if (userData && token) {
         const user = JSON.parse(userData);
         try {
-          const response = await axiosInstance.get(`/users/${user._id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            }
-          });
+          const response = await axiosInstance.get(`/users/${user._id}`);
 
           const formattedDateOfBirth = new Date(response.data.dateOfBirth).toISOString().split('T')[0];
 
@@ -65,12 +59,7 @@ const ManageProfile: React.FC = () => {
     if (userData && token) {
       const user = JSON.parse(userData);
       try {
-        const response = await axiosInstance.put(`/users/${user._id}`, formData, {
-          headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        });
+        const response = await axiosInstance.put(`/users/${user._id}`, formData);
         setMessage('Profile updated successfully');
         localStorage.setItem("userData", JSON.stringify(response.data.updatedUser));
       } catch (error) {
@@ -86,12 +75,7 @@ const ManageProfile: React.FC = () => {
     const token = localStorage.getItem("authToken");
     if (userData && token) {
       try {
-        await axiosInstance.delete('/users/me', {
-           headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        }
-      });
+        await axiosInstance.delete('/users/me');
         localStorage.removeItem("userData");
         navigate('/dashboard');
       } catch (error) {
