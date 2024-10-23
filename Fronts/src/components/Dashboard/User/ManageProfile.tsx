@@ -98,9 +98,8 @@ const ManageProfile: React.FC = () => {
     <div className="flex justify-center mt-2 px-8">
       {message && <p>{message}</p>}
       <form className="max-w-2xl" onSubmit={handleSubmit}>
-        <div className="flex flex-wrap border shadow rounded-lg px-8 bg-glass">
+        <div className="flex flex-wrap border shadow rounded-lg px-8 bg-glass backdrop-blur-glass">
           <h2 className="text-xl text-primaryText dark:text-formPrimaryText-300 pb-2">Profile Update:</h2>
-
       <div className="flex flex-col gap-2 w-full border-gray-400">
         <div>
 

@@ -114,6 +114,7 @@ const ingredientIndex = Number(name.split('-')[1]);
 
   return (
     <>
+    <div className='border shadow rounded-lg px-8 bg-glass backdrop-blur-glass'>
 <form onSubmit={handleSubmit} className="p-8 rounded-lg shadow-lg max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
 
   <h2 className="col-span-2 text-center text-2xl font-semibold text-gray-700">Add a Product</h2>
@@ -254,7 +255,8 @@ const ingredientIndex = Number(name.split('-')[1]);
         value={formData.ingredients[index] || ''}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+          className="mt-1 block w-full py-2 border border-gray-300 
+          rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
         />
         {ingredientsCount !== 1 && index >= 1 && (
         <button
@@ -268,7 +270,7 @@ const ingredientIndex = Number(name.split('-')[1]);
     ))}
       <button
     onClick={() => setIngredientsCount(count => count + 1)}
-    className="inline-block text-sm text-gray-700"
+    className="inline-block mt-2 text-sm text-gray-700"
   >
     Add Ingredient
   </button>
@@ -306,6 +308,7 @@ className="block text-sm font-medium text-gray-700">
 </div>
 
     </form>
+    </div>
     </>
   );
 };

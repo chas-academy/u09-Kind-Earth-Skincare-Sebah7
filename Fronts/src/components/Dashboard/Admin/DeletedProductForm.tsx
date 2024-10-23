@@ -2,6 +2,7 @@
 import React, { useState, useEffect, Key } from 'react';
 import axiosInstance from '../../../utils/axiosInstance';
 import DeleteProductButton from './DeleteProductButton';
+import { div } from 'framer-motion/client';
 
 interface Product {
   _id: Key | null | undefined;
@@ -37,10 +38,11 @@ const DeleteProductForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='border shadow rounded-lg px-8 bg-glass backdrop-blur-glass'>
       <h2>Delete Product</h2>
       {error && <p className="text-red-500">{error}</p>}
       <div>
+
         <label>Select Product:</label>
         <select onChange={(e) => handleProductSelect(e.target.value)} value={selectedProductId || ''} className='p-2 m-2 w-1/2'>
           <option value="" disabled>Select a product</option>

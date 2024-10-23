@@ -65,12 +65,12 @@ const AdminUserManagement: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="border shadow rounded-lg px-8 bg-glass backdrop-blur-glass">
       <h2>Roles Management</h2>
 
       {error && <p className="text-red-500">{error}</p>}
 
-      <table className="min-w-full bg-white">
+      <table className="min-w-full">
         <thead>
           <tr>
             <th className="py-2">Name</th>

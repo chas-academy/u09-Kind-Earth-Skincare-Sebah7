@@ -17,7 +17,12 @@ const DeleteProduct: React.FC<DeleteProductButtonProps> = ({ productId, onDelete
     }
   };
 
-  return <button onClick={handleDelete}>Delete Product</button>;
+  return <button className=' text-white flex w-full items-center justify-center 
+  rounded-lg border-none
+  bg-clayAsh
+  px-10 py-[7.3px] transition duration-200 
+  ease-in-out hover:bg-formPrimaryText 
+  hover:scale-105 active:scale-95 active:gb-neutral-700' onClick={handleDelete}>Delete Product</button>;
 };
 
 export default DeleteProduct;

@@ -48,7 +48,7 @@ const ManageRoutines: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="bg-glass backdrop-blur-glass border shadow rounded-lg px-8 py-4">
       <h2>My Routines</h2>
       <ul>
         {routines.map((routine) => (
@@ -61,7 +61,9 @@ const ManageRoutines: React.FC = () => {
                 </li>
               ))}
             </ul>
+            <div className="mb-4">
             <Button onClick={() => deleteRoutine(routine._id)} text="Delete Routine" type="submit"/>
+              </div>
           </li>
         ))}
       </ul>

@@ -14,7 +14,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   };
 
   return (
-    <div className="p-2 border rounded-md shadow-md cursor-pointer" onClick={handleProductClick}>
+    <div className="px-1 bg-glass backdrop-blur-glass p-1 border rounded-md shadow-md cursor-pointer" onClick={handleProductClick}>
       <h3 className="text-lg font-bold">{product.name}</h3>
 
       {/* Display product image */}
