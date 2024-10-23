@@ -11,13 +11,13 @@ const Footer = () => {
             <ul>
               <h3>About Us</h3>
               <li className="list-none text-lg">
-                <Link to="/stories">Our Story</Link>
+                <Link to="/about">Our Story</Link>
                 </li>
               <li className="list-none text-lg">
-                <Link to="/resources">Our Resources</Link>
+                <Link to="/about">Our Resources</Link>
                 </li>
                 <li className="list-none text-lg">
-                <Link to="/privacy">Privacy Policy</Link>
+                <Link to="/about">Privacy Policy</Link>
                 </li>
             </ul>
         </div>

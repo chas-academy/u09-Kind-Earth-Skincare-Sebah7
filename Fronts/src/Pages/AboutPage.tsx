@@ -9,7 +9,6 @@ import crueltyfreeImage from '../assets/crueltyfree.jpg';
 const AboutPage: React.FC = () => {
   return (
     <div className="flex flex-col">
-      {/* Header Section */}
       <Header />
       <SearchBar />
 
@@ -38,26 +37,52 @@ const AboutPage: React.FC = () => {
           title="About Our Criteria"
           sections={[
             {
-              content: "Cruelty-free because word word word...",
+              content: "Cruelty-free because we love animals",
               image: crueltyfreeImage,
             },
             {
-              content: "Cruelty-free because word word word...",
+              content: "Vegan because we love natural products",
               image: crueltyfreeImage,
             },
             {
-              content: "Cruelty-free because word word word...",
+              content: "Clean because we love our planet",
+              image: crueltyfreeImage,
+            },
+            {
+              content: "BDS because we care about human rights",
+              image: crueltyfreeImage,
+            },
+            {
+              content: "Ethical because we care about people",
               image: crueltyfreeImage,
             },
           ]}
         />
 
-        {/* About Our Resources Section */}
         <AboutSection
           title="About Our Resources"
           sections={[
             {
-              content: "We are words words words...",
+              content: (
+                <>
+                Our resources are{' '}
+                <a
+                  href="https://www.ethicalconsumer.org/ethicalcampaigns/boycotts/alternative-ethical-brands-support-palestine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ethical Consumer
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://gaza.nu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Gaza.nu
+                </a>.
+              </>
+              ),
               image: null,
             },
           ]}
