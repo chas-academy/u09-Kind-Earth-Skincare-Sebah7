@@ -39,15 +39,16 @@ useEffect(() => {
     return;
   }
   const productIds = products.map(product => product._id);
-  const userData = localStorage.getItem("userData");
-  const token = localStorage.getItem("authToken"); 
-  if (userData && token) {
-      const user = JSON.parse(userData);
+  // const userData = localStorage.getItem("userData");
+  // const token = localStorage.getItem("authToken"); 
+  // if (userData && token) {
+  //     const user = JSON.parse(userData);
   try {
-    await axiosInstance.post("/users/saveroutine", { productIds },
-      { headers: 
-        { Authorization: `Bearer ${user.token}`} 
-      }
+    await axiosInstance.post("/users/saveroutine", { productIds, routineName: mainConcern }
+      // ,
+      // { headers: 
+      //   { Authorization: `Bearer ${user.token}`} 
+      // }
     );
     alert("Products added to routine!");
   } catch (error) {
@@ -55,7 +56,7 @@ useEffect(() => {
     alert("Failed to add products to routine.");
   }
 }
-}
+// }
 
  if (loading) {
     return <PacmanLoader color="#91b553" />;
