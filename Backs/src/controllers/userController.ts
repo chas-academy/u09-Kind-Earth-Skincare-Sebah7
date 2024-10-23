@@ -3,6 +3,7 @@ import { IUser } from "../interfaces/IUser";
 import { CustomRequest } from "../middlewares/authMiddleware";
 import { Response } from "express";
 import Product from "../models/productModel";
+import RoutineMatcherModel from "../models/routineModel";
 
 export const registerUser = async (user: Partial<IUser>) => {
   console.log("Incoming user registration:", user);
@@ -151,7 +152,8 @@ export const updateUser = async (id: string, data: Partial<IUser>) => {
 
 export const saveRoutine = async (req: CustomRequest, res: Response) => {
   try {
-    const { productIds } = req.body;
+    const { productIds, routineName } = req.body;
+
     if (!req.user) {
       return res
         .status(401)
@@ -165,23 +167,43 @@ export const saveRoutine = async (req: CustomRequest, res: Response) => {
 
     const validProductIds = await Product.find({
       _id: { $in: productIds },
-    }).select("_id");
+    }).select("_id name");
 
     if (validProductIds.length === 0) {
       return res.status(404).json({ message: "No valid products found" });
     }
 
-    validProductIds.forEach((productId) => {
-      if (!user.routines.includes(productId._id)) {
-        user.routines.push(productId._id);
-      }
+    const recommendedProducts = validProductIds.map((product) => ({
+      productId: product._id,
+      productName: product.name, // Ensure the name is passed here
+      reason: "Custom routine", // Example reason, you can change this
+    }));
+
+    const routine = await RoutineMatcherModel.create({
+      userId: user._id,
+      questions: [], // Add relevant questions if necessary
+      userAnswers: [], // Add relevant answers if necessary
+      result: {
+        userId: user._id,
+        recommendedProducts,
+      },
+      name: routineName || "My Custom Routine",
     });
 
+    // validProductIds.forEach((productId) => {
+    //   if (!user.routines.includes(productId._id)) {
+    //     user.routines.push(productId._id);
+    //   }
+    // });
+
+    user.routines.push(routine._id as any);
     await user.save();
 
-    res
-      .status(200)
-      .json({ message: "Routine saved successfully", routines: user.routines });
+    res.status(200).json({
+      message: "Routine saved successfully",
+      routine,
+      userRoutines: user.routines,
+    });
   } catch (error) {
     console.error("Error saving routine:", error);
     res.status(500).json({ message: "Internal Server Error" });
