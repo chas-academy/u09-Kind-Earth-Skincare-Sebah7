@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../../utils/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../Shared/Button';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const ManageProfile: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +16,8 @@ const ManageProfile: React.FC = () => {
   });
   const [message, setMessage] = useState<string | null>(null);
   const navigate = useNavigate();
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -85,6 +89,10 @@ const ManageProfile: React.FC = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+  setPasswordVisible(!passwordVisible);
+};
+
   return (
     <>
     <div className="flex justify-center mt-2 px-8">
@@ -131,39 +139,63 @@ const ManageProfile: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className="relative">
           <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="currentPassword" 
           >Current Password</label>
           <input
             className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
-            type="password"
+                type={passwordVisible ? "text" : "password"}
             name="currentPassword"
             value={formData.currentPassword}
             onChange={handleChange}
           />
+          <button
+    type="button"
+    onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 flex items-center px-2 bg-transparent border-transparent"
+  >
+    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+  </button>
           </div>
 
-        <div>
+
+        <div className="relative">
           <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="password">New Password</label>
           <input
                 className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
-            type="password"
+                type={passwordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
           />
-        </div>
+        <button
+    type="button"
+    onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 flex items-center px-2 bg-transparent border-transparent"
+  >
+    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+  </button>
+          </div>
 
-        <div>
+
+        <div className="relative">
           <label className="text-primaryText dark:text-formPrimaryText-400" htmlFor="confirmPassword">Confirm Password</label>
           <input
             className="w-full py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-formPrimaryText-100"
-            type="password"
+                type={passwordVisible ? "text" : "password"}
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
           />
-        </div>
+        <button
+    type="button"
+    onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 flex items-center px-2 bg-transparent border-transparent"
+  >
+    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+  </button>
+          </div>
+
         
         <div className="flex justify-end">
           <div className=' py-1.5 px-3 m-1'>
