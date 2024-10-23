@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { Product } from '../Admin/ProductForm.interface';
+import { Product } from '../Dashboard/Admin/ProductForm.interface';
 import SearchBar from './SearchBar';
 import ProductItem from '../Product/ProductItem';
 
