@@ -71,6 +71,7 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ onUpdate }) => {
   };
 
   return (
+    <>
     <div className='border shadow rounded-lg px-8 bg-glass backdrop-blur-glass'>
       <h2>Update Product</h2>
       {error && <p className="text-red-500">{error}</p>}
@@ -91,6 +92,7 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ onUpdate }) => {
         <UpdateProductFormUI productData={productData} onUpdate={handleUpdate} />
       )}
     </div>
+    </>
   );
 };
 

@@ -115,12 +115,13 @@ const ingredientIndex = Number(name.split('-')[1]);
   return (
     <>
     <div className='border shadow rounded-lg px-8 bg-glass backdrop-blur-glass'>
-<form onSubmit={handleSubmit} className="p-8 rounded-lg shadow-lg max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-
+  <form onSubmit={handleSubmit} className="p-8 rounded-lg max-w-5xl mx-auto">
   <h2 className="col-span-2 text-center text-2xl font-semibold text-gray-700">Add a Product</h2>
 
-<div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+<div className='flex flex-col lg:flex-row lg:flex-wrap lg:gap-8 justify-center'>
+
+<div className="bg-white p-6 mb-2 rounded-lg shadow-md flex-1 lg:w-1/2">
+    <h3 className="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
 
       <div className="mb-4">
         <label htmlFor="name" 
@@ -132,7 +133,7 @@ const ingredientIndex = Number(name.split('-')[1]);
           value={formData.name}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+          className="mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
 
         />
       </div>
@@ -146,7 +147,7 @@ const ingredientIndex = Number(name.split('-')[1]);
           value={formData.description}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+          className="mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
         ></textarea>
       </div>
 
@@ -193,7 +194,7 @@ const ingredientIndex = Number(name.split('-')[1]);
       </div>
 </div>
 
-<div className='bg-white p-6 rounded-lg shadow-md'>
+<div className='bg-white p-6 mb-2 rounded-lg shadow-md flex-1 lg:w-1/2'>
   <h3 className="text-xl font-semibold text-gray-800 mb-4">Skin Information</h3>
 
       <div className="mb-4">
@@ -240,7 +241,11 @@ const ingredientIndex = Number(name.split('-')[1]);
 
 </div>
 
-<div className="bg-white p-6 rounded-lg shadow-md">
+</div>
+
+<div className='flex flex-col lg:flex-row lg:flex-wrap lg:gap-8 justify-center'>
+
+<div className="bg-white p-6 mb-2 rounded-lg shadow-md flex-1 lg:w-1/2">
   <h3 className="text-xl font-semibold text-gray-800 mb-4">Ingridients</h3>
 
 <div className="mb-4">
@@ -278,7 +283,7 @@ const ingredientIndex = Number(name.split('-')[1]);
 
 </div>
 
-<div className="bg-white p-6 rounded-lg shadow-md">
+<div className="bg-white p-6 mb-2 rounded-lg shadow-md flex-1 lg:w-1/2">
   <h3 className="text-xl font-semibold text-gray-800 mb-4">Upload Image</h3>
 <label htmlFor="productImageUrl"
 className="block text-sm font-medium text-gray-700">
@@ -288,7 +293,7 @@ className="block text-sm font-medium text-gray-700">
           name="productImageUrl"
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+          className="mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
         />
         <div className="mt-4 h-32 w-full flex items-center justify-center border border-dashed border-gray-300 rounded-md">
 {formData.productImageUrl
@@ -301,13 +306,13 @@ className="block text-sm font-medium text-gray-700">
           </div>
 </div>
 
-<div 
-            className="col-span-2 flex justify-center"
-            >
-              <Button text="Create Product" type="submit"/>
 </div>
-
+<div className="col-span-2 flex justify-center">
+<Button text="Create Product" type="submit"/>
+</div>
     </form>
+    
+
     </div>
     </>
   );
