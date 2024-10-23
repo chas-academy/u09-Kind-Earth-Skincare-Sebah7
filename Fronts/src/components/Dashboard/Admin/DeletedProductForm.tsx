@@ -2,7 +2,6 @@
 import React, { useState, useEffect, Key } from 'react';
 import axiosInstance from '../../../utils/axiosInstance';
 import DeleteProductButton from './DeleteProductButton';
-import { div } from 'framer-motion/client';
 
 interface Product {
   _id: Key | null | undefined;
