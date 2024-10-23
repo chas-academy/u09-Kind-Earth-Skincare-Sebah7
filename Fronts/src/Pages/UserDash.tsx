@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import VerticalTabs from "../components/Dashboard/Tab/TabVertical";
 import ManageProfile from "../components/Dashboard/User/ManageProfile";
+import ManageRoutines from "../components/Dashboard/User/ManageRoutine";
 
 const UserDash = () => {
     
@@ -24,9 +25,8 @@ const UserDash = () => {
   }, [navigate])
 
    const tabs = [
+    { label: 'Manage Routines', content: < ManageRoutines/> },
     { label: 'Manage Account', content: <ManageProfile /> },
-    { label: 'Manage Routines', content: <div>Manage Routines</div> },
-    { label: 'Manage Reviews', content: <div>Manage Review</div> },
   ];
 
     return (
