@@ -19,6 +19,7 @@ const Category: React.FC<CategoryProps> = ({ title, type, onViewAll }) => {
       try {
         const response = await fetch("https://u09-kind-earth-skincare-sebah7-4.onrender.com/api/products/enums");
         const data = await response.json();
+        setTimeout(() => {
         setItems(
           type === "categories"
             ? data.categories
@@ -28,6 +29,8 @@ const Category: React.FC<CategoryProps> = ({ title, type, onViewAll }) => {
             ? data.skinTypes
             : data.skinConcerns
         );
+        setLoading(false);
+      }, 0);
       } catch (error) {
         console.error("Error fetching items:", error);
       } finally {
