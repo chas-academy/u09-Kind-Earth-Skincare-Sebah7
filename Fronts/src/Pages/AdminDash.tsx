@@ -3,6 +3,7 @@ import ProductForm from '../components/Dashboard/Admin/ProductForm';
 import { useEffect } from 'react';
 import VerticalTabs from '../components/Dashboard/Tab/TabVertical';
 import UpdateProductForm from '../components/Dashboard/Admin/UpdateProduct';
+import DeleteProductForm from '../components/Dashboard/Admin/DeletedProductForm';
 
 const AdminDashboard = () => {
 
@@ -28,8 +29,7 @@ const onUpdate = () => {
   const tabs = [
     { label: 'Create Product', content: <ProductForm /> },
     { label: 'Update Product', content: <UpdateProductForm onUpdate={onUpdate} /> },
-    { label: 'Manage Users', content: <div>Orders Users</div> },
-    { label: 'Manage Reviews', content: <div>Manage Review</div> },
+    { label: 'Delete Product', content: < DeleteProductForm/> },
   ];
   
   return (
