@@ -56,19 +56,6 @@ const ProductDetail: React.FC = () => {
  {/* </div> */}
 
 <hr className="my-8" />
-                      
-<div className="flex flex-wrap gap-4 items-start">
-      {product.price && (
-        <div className="mb-4">
-          <h4 className="font-semibold">Price estimate:</h4>
-          <p>${product.price}</p>
-        </div>
-      )}
-
-
-</div>
-
-<hr className="my-8" />
 
       {/* Display categories */}
       <div className="mb-4">

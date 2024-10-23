@@ -29,7 +29,6 @@ const ProductForm: React.FC = () => {
     skinTypes: [],
     skinConcerns: [],
     ingredients: [],
-    price: '',
     productImageUrl: '',
   });
 
@@ -241,20 +240,7 @@ const ingredientIndex = Number(name.split('-')[1]);
 </div>
 
 <div className="bg-white p-6 rounded-lg shadow-md">
-  <h3 className="text-xl font-semibold text-gray-800 mb-4">Pricing and Ingridients</h3>
-        <div className="mb-4">
-        <label htmlFor="price"
-        className="block text-sm font-medium text-gray-700">
-          Price</label>
-        <input
-          type="number"
-          name="price"
-          value={formData.price}
-          onChange={handleChange}
-          required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
-        />
-        </div>
+  <h3 className="text-xl font-semibold text-gray-800 mb-4">Ingridients</h3>
 
 <div className="mb-4">
         <label htmlFor="ingredients"
