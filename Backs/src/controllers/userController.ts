@@ -1,8 +1,8 @@
 import User from "../models/userModel";
 import { IUser } from "../interfaces/IUser";
-import bcrypt from "bcrypt";
 import { CustomRequest } from "../middlewares/authMiddleware";
 import { Response } from "express";
+import Product from "../models/productModel";
 
 export const registerUser = async (user: Partial<IUser>) => {
   console.log("Incoming user registration:", user);
@@ -91,7 +91,7 @@ export const loginUser = async (user: Partial<IUser>) => {
 
 export const logoutUser = async (req: any) => {
   try {
-    console.log("User before logout:", req.user); // Debugging: Log the user before logout
+    console.log("User before logout:", req.user);
     console.log("Token before logout:", req.token);
 
     req.user.tokens = req.user.tokens.filter((token: any) => {
@@ -100,11 +100,11 @@ export const logoutUser = async (req: any) => {
 
     await req.user.save();
 
-    console.log("User after logout:", req.user); // Debugging: Log the user after logout
+    console.log("User after logout:", req.user);
 
     return { message: "User logged out successfully." };
   } catch (error) {
-    console.error("Logout Error:", error); // Detailed error logging
+    console.error("Logout Error:", error);
 
     return { error: error };
   }
@@ -140,32 +140,71 @@ export const deleteOwnAccount = async (req: CustomRequest, res: Response) => {
 
 export const updateUser = async (id: string, data: Partial<IUser>) => {
   try {
-    const user = await User.findById(id);
-    if (!user) {
-      return { error: "User not found" };
-    }
-
-    if (data.password) {
-      if (!data.currentPassword) {
-        return { error: "Current password is required" };
-      }
-
-      const isMatch = await bcrypt.compare(data.currentPassword, user.password);
-      if (!isMatch) {
-        return { error: "Current password is incorrect" };
-      }
-
-      // Hash the new password
-      const salt = await bcrypt.genSalt(10);
-      data.password = await bcrypt.hash(data.password, salt);
-    }
-
-    const updatedUser = await User.findByIdAndUpdate(id, data, {
+    return await User.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
     });
-    return updatedUser;
   } catch (error) {
     return { error: error };
+  }
+};
+
+export const saveRoutine = async (req: CustomRequest, res: Response) => {
+  try {
+    const { productIds } = req.body;
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ message: "Authentication failed. User not found." });
+    }
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const validProductIds = await Product.find({
+      _id: { $in: productIds },
+    }).select("_id");
+
+    if (validProductIds.length === 0) {
+      return res.status(404).json({ message: "No valid products found" });
+    }
+
+    validProductIds.forEach((productId) => {
+      if (!user.routines.includes(productId._id)) {
+        user.routines.push(productId._id);
+      }
+    });
+
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: "Routine saved successfully", routines: user.routines });
+  } catch (error) {
+    console.error("Error saving routine:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const deleteSavedRoutine = async (
+  id: string,
+  req: CustomRequest,
+  res: Response
+) => {
+  try {
+    const { productId } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.routines = user.routines.filter((id) => id.toString() !== productId);
+    await user.save();
+    res.status(200).json({ message: "Product deleted successfully", user });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
