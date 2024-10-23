@@ -9,6 +9,8 @@ import {
   updateUser,
   saveRoutine,
   deleteSavedRoutine,
+  getAllUsers,
+  updateUserRole,
 } from "../controllers/userController";
 import {
   auth,
@@ -100,6 +102,18 @@ router.put("/:id", auth, async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+router.get("/", auth, admin, async (req, res) => {
+  try {
+    const users = await getAllUsers();
+    return res.status(200).json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.put("/role/:userId", auth, admin, updateUserRole);
 
 router.post("/saveroutine", auth, saveRoutine);
 router.delete("/delete-product/:productId", auth, deleteSavedRoutine);
