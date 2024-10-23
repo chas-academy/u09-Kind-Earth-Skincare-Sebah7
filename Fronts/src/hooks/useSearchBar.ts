@@ -1,4 +1,4 @@
-import { Product } from "../components/Admin/ProductForm.interface";
+import { Product } from "../components/Dashboard/Admin/ProductForm.interface";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 

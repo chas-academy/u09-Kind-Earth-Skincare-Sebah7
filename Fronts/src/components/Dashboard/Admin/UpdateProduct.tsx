@@ -59,16 +59,11 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ onUpdate }) => {
         return;
       }
 
-      await axiosInstance.put(`/products/products/${selectedProductId}`, updatedProductData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      await axiosInstance.put(`/products/products/${selectedProductId}`, updatedProductData);
       onUpdate();
       setSelectedProductId(null);
       setProductData(null);
+      alert('Product updated successfully!');
     } catch (error) {
       console.error('Error updating product:', error);
       setError('Failed to update product.');

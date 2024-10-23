@@ -47,11 +47,7 @@ if (!validateEmail(contactData.email)) {
     setSuccess('');
 
    try {
-      const response = await axiosInstance.post('/contact/contact', contactData, {
-        headers: {
-      'Content-Type': 'application/json'
-   },
-  });
+      const response = await axiosInstance.post('/contact/contact', contactData );
       console.log(response);
       setSuccess('Your message was sent successfully!');
       setError('');
