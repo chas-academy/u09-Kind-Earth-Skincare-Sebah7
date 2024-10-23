@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Product from "../models/productModel";
 import { UserAnswer, ProductRecommendation } from "../interfaces/IRoutine";
 import User from "../models/userModel";
-import { RoutineMatcherModel } from "../models/routineModel";
+import RoutineMatcherModel from "../models/routineModel";
 import { CustomRequest } from "../middlewares/authMiddleware";
 
 const generateProductRecommendations = async (
