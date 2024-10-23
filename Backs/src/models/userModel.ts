@@ -12,7 +12,7 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     role: { type: Number, default: 2 },
     tokens: [{ token: { type: String, required: false } }],
     // savedProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-    routines: [{ type: Types.ObjectId, ref: "RoutineMatcherModel" }],
+    routines: [{ type: Types.ObjectId, ref: "RoutineMatcher" }],
   },
   {
     timestamps: true,
