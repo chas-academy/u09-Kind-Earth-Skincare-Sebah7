@@ -1,4 +1,4 @@
-import { Document, HydratedDocument, Model } from "mongoose";
+import { Document, HydratedDocument, Model, Types } from "mongoose";
 export interface IUser extends Document {
   first_name: string;
   email: string;
@@ -8,6 +8,8 @@ export interface IUser extends Document {
   currentPassword?: string;
   tokens: { token: string }[];
   role: number;
+  savedProducts: string[];
+  routines: Types.ObjectId[];
 }
 
 export interface IUserMethods {

@@ -1,8 +1,16 @@
 import { Router } from "express";
-import { routineMatchController } from "../controllers/routineController";
+import {
+  deleteRoutine,
+  getRoutines,
+  renameRoutine,
+  routineMatchController,
+} from "../controllers/routineController";
 
 const RoutineRouter = Router();
 
 RoutineRouter.post("/routine-match", routineMatchController);
+RoutineRouter.get("/:userId/getRoutines", getRoutines);
+RoutineRouter.delete("/:routineId/delete", deleteRoutine);
+RoutineRouter.put("/:routineId/rename", renameRoutine);
 
 export default RoutineRouter;
