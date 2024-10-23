@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../utils/axiosInstance";
+import Button from "../../Shared/Button";
 
 interface Product {
   productId: string;
@@ -18,7 +19,6 @@ interface Routine {
 
 const ManageRoutines: React.FC = () => {
   const [routines, setRoutines] = useState<Routine[]>([]);
-  // const [newRoutineName, setNewRoutineName] = useState("");
 
   useEffect(() => {
        const fetchRoutines = async () => {
@@ -37,27 +37,15 @@ const ManageRoutines: React.FC = () => {
     fetchRoutines();
   }, []);
 
-  // const deleteRoutine = async (routineId: string) => {
-  //   try {
-  //     await axiosInstance.delete(`/routines/${routineId}`);
-  //     setRoutines(routines.filter((routine) => routine._id !== routineId));
-  //   } catch (error) {
-  //     console.error("Error deleting routine", error);
-  //   }
-  // };
-
-  // const renameRoutine = async (routineId: string) => {
-  //   try {
-  //     await axios.put(`/api/routines/${routineId}`, { newName: newRoutineName });
-  //     setRoutines(
-  //       routines.map((routine) =>
-  //         routine._id === routineId ? { ...routine, name: newRoutineName } : routine
-  //       )
-  //     );
-  //   } catch (error) {
-  //     console.error("Error renaming routine", error);
-  //   }
-  // };
+  const deleteRoutine = async (routineId: string) => {
+    try {
+      await axiosInstance.delete(`/routine/${routineId}/delete`);
+      setRoutines(routines.filter((routine) => routine._id !== routineId));
+      alert("Routine deleted successfully");
+    } catch (error) {
+      console.error("Error deleting routine", error);
+    }
+  };
 
   return (
     <div>
@@ -73,14 +61,7 @@ const ManageRoutines: React.FC = () => {
                 </li>
               ))}
             </ul>
-            {/* <button onClick={() => deleteRoutine(routine._id)}>Delete</button> */}
-            {/* <input
-              type="text"
-              value={newRoutineName}
-              onChange={(e) => setNewRoutineName(e.target.value)}
-              placeholder="New routine name"
-            /> */}
-            {/* <button onClick={() => renameRoutine(routine._id)}>Rename</button> */}
+            <Button onClick={() => deleteRoutine(routine._id)} text="Delete Routine" type="submit"/>
           </li>
         ))}
       </ul>

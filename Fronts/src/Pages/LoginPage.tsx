@@ -3,10 +3,13 @@ import InputField from "../components/Shared/InputField";
 import Button from "../components/Shared/Button";
 import loginImage from "../assets/login.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const Login: React.FC = () => {
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
  const [formData, setFormData] = useState ({
   email: "",
@@ -74,6 +77,10 @@ const Login: React.FC = () => {
       });
   };
 
+  const togglePasswordVisibility = () => {
+  setPasswordVisible(!passwordVisible);
+};
+
   return (
     <header className=" flex flex-col md:flex-row rounded-lg border-solid border-clayAsh px-1 py-1">
       <div
@@ -99,18 +106,25 @@ const Login: React.FC = () => {
                 placeholder="Email Address"
                 autoComplete="off" 
               />
+              <div className="relative">
               <InputField
                 label="Password:"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 id="password"
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Password"
                 autoComplete="off" 
               />
-            
-
-            <div className="flex items-center gap-3 mb-9">
+    <button
+    type="button"
+    onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 flex items-center px-2 bg-transparent border-transparent"
+  >
+    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+  </button>
+  </div>
+      <div className="flex items-center gap-3 mb-9">
               <input
                 type="checkbox"
                 id="remember"
