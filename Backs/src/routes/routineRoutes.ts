@@ -9,7 +9,7 @@ import {
 const RoutineRouter = Router();
 
 RoutineRouter.post("/routine-match", routineMatchController);
-RoutineRouter.get("/:userId/getRoutines", getRoutines);
+RoutineRouter.get("/getRoutines", getRoutines);
 RoutineRouter.delete("/:routineId/delete", deleteRoutine);
 RoutineRouter.put("/:routineId/rename", renameRoutine);
 

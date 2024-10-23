@@ -7,6 +7,8 @@ import {
   getUser,
   deleteOwnAccount,
   updateUser,
+  saveRoutine,
+  deleteSavedRoutine,
 } from "../controllers/userController";
 import {
   auth,
@@ -98,5 +100,8 @@ router.put("/:id", auth, async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+router.post("/saveroutine", auth, saveRoutine);
+router.delete("/delete-product/:productId", auth, deleteSavedRoutine);
 
 export default router;
