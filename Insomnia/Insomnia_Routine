@@ -1,0 +1,371 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v10.1.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2024-10-23T19:15:19.826Z",
+				"time": 218.95000000000002,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:3000/api/routine/6718fc55e1dc715cd647e10e/delete",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/10.1.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZhNzQ0MGZhZDEzMGY3NzNmMDJlOTUiLCJpYXQiOjE3Mjk2OTA2ODcsImV4cCI6MTcyOTY5NDI4N30.zkAb9PhDxrpPYsXOsXGI-Z4-h-0s-uanHraDCJDuI0g"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "42"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"2a-Yu0r1J+2zarhfyKO22YeeKpggfs\""
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 23 Oct 2024 13:51:34 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 42,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"message\":\"Routine deleted successfully\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 218.95000000000002,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Delete"
+			},
+			{
+				"startedDateTime": "2024-10-23T19:15:19.826Z",
+				"time": 52.695,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3000/api/routine/getRoutines",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/10.1.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZhNzQ0MGZhZDEzMGY3NzNmMDJlOTUiLCJpYXQiOjE3Mjk2ODE0NTgsImV4cCI6MTcyOTY4NTA1OH0.0jkiOK4djGIdbl-fdHvrjJiObzWenDns5aKcxedjoV4"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "575"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"23f-XUFThim6XfE4h9gqd6Vi7+bHyhM\""
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 23 Oct 2024 11:49:15 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 575,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"routines\":[{\"_id\":\"6718e2abe1dc715cd647dfc1\",\"userId\":\"66fa7440fad130f773f02e95\",\"questions\":[],\"userAnswers\":[],\"result\":{\"userId\":\"66fa7440fad130f773f02e95\",\"recommendedProducts\":[{\"productId\":\"67107f0123dda66ec6cd9d7c\",\"productName\":\"Rose Face Oil\",\"reason\":\"Custom routine\",\"_id\":\"6718e2abe1dc715cd647dfc3\"},{\"productId\":\"6710808623dda66ec6cd9d82\",\"productName\":\"Rose Face Cleansing Oil\",\"reason\":\"Custom routine\",\"_id\":\"6718e2abe1dc715cd647dfc4\"}],\"_id\":\"6718e2abe1dc715cd647dfc2\"},\"name\":\"My Morning Skincare Routine\",\"createdAt\":\"2024-10-23T11:48:59.473Z\",\"__v\":0}]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 52.695,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Fetch"
+			},
+			{
+				"startedDateTime": "2024-10-23T19:15:19.826Z",
+				"time": 166.177,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3000/api/users/saveroutine",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/10.1.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZhNzQ0MGZhZDEzMGY3NzNmMDJlOTUiLCJpYXQiOjE3Mjk2ODE0NTgsImV4cCI6MTcyOTY4NTA1OH0.0jkiOK4djGIdbl-fdHvrjJiObzWenDns5aKcxedjoV4"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"productIds\": [\"67107f0123dda66ec6cd9d7c\", \"6710808623dda66ec6cd9d82\"],\n\t  \"routineName\": \"My Morning Skincare Routine\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "763"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"2fb-1IAOAGxl5992uaS4bEWqoPDvXCQ\""
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 23 Oct 2024 11:48:59 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 763,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"message\":\"Routine saved successfully\",\"routine\":{\"userId\":\"66fa7440fad130f773f02e95\",\"questions\":[],\"userAnswers\":[],\"result\":{\"userId\":\"66fa7440fad130f773f02e95\",\"recommendedProducts\":[{\"productId\":\"67107f0123dda66ec6cd9d7c\",\"productName\":\"Rose Face Oil\",\"reason\":\"Custom routine\",\"_id\":\"6718e2abe1dc715cd647dfc3\"},{\"productId\":\"6710808623dda66ec6cd9d82\",\"productName\":\"Rose Face Cleansing Oil\",\"reason\":\"Custom routine\",\"_id\":\"6718e2abe1dc715cd647dfc4\"}],\"_id\":\"6718e2abe1dc715cd647dfc2\"},\"name\":\"My Morning Skincare Routine\",\"_id\":\"6718e2abe1dc715cd647dfc1\",\"createdAt\":\"2024-10-23T11:48:59.473Z\",\"__v\":0},\"userRoutines\":[\"67107f0123dda66ec6cd9d7c\",\"6710808623dda66ec6cd9d82\",\"671154516e46a4f81273ca20\",\"671158456e46a4f81273ca44\",\"6718e2abe1dc715cd647dfc1\"]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 166.177,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Save"
+			},
+			{
+				"startedDateTime": "2024-10-23T19:15:19.826Z",
+				"time": 115.55799999999999,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3000/api/routine/routine-match",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/10.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"answers\": [\n    {\n      \"questionId\": \"skinType\",\n      \"selectedOption\": {\n        \"id\": \"1\",\n        \"text\": \"Oily\",\n        \"value\": \"oily\"\n      }\n    },\n    {\n      \"questionId\": \"skinConcern\",\n      \"selectedOption\": {\n        \"id\": \"2\",\n        \"text\": \"Acne\",\n        \"value\": \"acne\"\n      }\n    }\n  ]\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "153"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"99-dA7y+Z/L1umdZy8S6ZkiJbH2p0g\""
+						},
+						{
+							"name": "Date",
+							"value": "Mon, 14 Oct 2024 13:05:44 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 153,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "[{\"productId\":\"66fd30fd53980238c36548b1\",\"productName\":\"test test\",\"reason\":\"This moisturizer is recommended for your oily skin type and acne concern.\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 115.55799999999999,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Match"
+			}
+		]
+	}
+}

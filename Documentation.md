@@ -5,6 +5,7 @@
 1. [UX](#ux)
 2. [Frontend](#frontend)
 3. [Backend](#backend)
+4. [PWA](#pwa)
 
 To create the project we need to first conduct the right research and then choose the tools we need to continue with for backend, frontend and API. Below are the documentations for each step as well as material links.
 
@@ -63,39 +64,15 @@ Based on the second phase of forms I created a Person, sitemap and went on with 
 
 ### Personas
 
- [Link to Persona](https://www.figma.com/board/XnSUDxolkJOaFkZ4qN7uAo/Personas-_-SiteMaps?node-id=0-1&node-type=CANVAS&t=AgP9NL88lJ2BD1iq-0)
+[Link to Persona](https://www.figma.com/board/XnSUDxolkJOaFkZ4qN7uAo/Personas-_-SiteMaps?node-id=0-1&node-type=CANVAS&t=AgP9NL88lJ2BD1iq-0)
 
 ### Site map
 
- [Link to site map](https://www.figma.com/board/XnSUDxolkJOaFkZ4qN7uAo/Personas-_-SiteMaps?node-id=0-1&node-type=CANVAS&t=AgP9NL88lJ2BD1iq-0)
+[Link to site map](https://www.figma.com/board/XnSUDxolkJOaFkZ4qN7uAo/Personas-_-SiteMaps?node-id=0-1&node-type=CANVAS&t=AgP9NL88lJ2BD1iq-0)
 
 ### Prototype
 
- [Link to lo-fi](https://www.figma.com/design/c2cu6Ibahgz1BqYKOdzrRJ/Low-fi-design?node-id=147-88&node-type=FRAME&t=G5aifOy9T7enKAaR-0)
-
-## Frontend
-
-### React and Tailwind
-
-Started by installing the ract pacadke with vit ein my project. [Guide](https://www.geeksforgeeks.org/how-to-setup-reactjs-with-vite/)
-
-And for tailwind i followed: [Guide](https://tailwindcss.com/docs/guides/create-react-app)
-
-Some pointers:
-
-Front:
-
-Installed React with Vite
-
-- ran ``npm create vite@latest projectName --template``
-- choose React package and Typescript with SWC
-- ran ``npm install`` then ``npm run dev``
-
-Installed Tailwind
-
-- ran ``npm install -D tailwindcss`` in the frontend folder
-- then ``npx tailwindcss init``
-- Update the ``tailwind.config.js`` and ``index.css``
+[Link to lo-fi](https://www.figma.com/design/c2cu6Ibahgz1BqYKOdzrRJ/Low-fi-design?node-id=147-88&node-type=FRAME&t=G5aifOy9T7enKAaR-0)
 
 ## Backend
 
@@ -103,7 +80,7 @@ Installed Tailwind
 
 Followed the step on this [Guide](https://blog.logrocket.com/how-to-set-up-node-typescript-express/) for th einstallation of nodejs and express.
 
-**Some pointers fom installation:**
+**Some pointers from installation:**
 
 - created package.json
 - installed npm and express server npm i express dotenv
@@ -115,53 +92,92 @@ Followed the step on this [Guide](https://blog.logrocket.com/how-to-set-up-node-
 - Tested express server with .ts in terminal with npx ts-node src/index.ts
 - Create App and server ts files.
 - Installed test with:
-  - ran ``npm i -D jest``
-  - then ``npm i -D ts-jest @types/jest``
-  - then ``npx ts-jest config:init``
-  - changed test in ``package.json``
-  - install ``npm install -D supertest superagent @types/supertest @types/superagent``
-- Installed CORS ``npm i --save-dev @types/cors``
+  - ran `npm i -D jest`
+  - then `npm i -D ts-jest @types/jest`
+  - then `npx ts-jest config:init`
+  - changed test in `package.json`
+  - install `npm install -D supertest superagent @types/supertest @types/superagent`
+- Installed CORS `npm i --save-dev @types/cors`
 
-## API
+### Backs Stacks
+
+dependencies and devdependencies:
+
+- bcrypt(@types/bcrypt): To hash passwords
+- cors(@types/cor): For Cross-Origin Resource Sharing
+- dotenv: To load from .env to process.env
+- jsonwebtoken(@types/jsonwebtoken): To create and verifiy JSON Web Tokens
+- multer: to handle multipart form data, for images
+- nodemailer: to send emails from node.js
 
 ### MongoDB
 
-### Insomnia
+Installed mongo db and set up my database for the project with the db.ts and mongoUrl connection in env. Connected to mongoose and defined Schemas and Models. And example of a model:
 
+```ts
+import { Schema, Types, model } from "mongoose";
+import { IUser, IUserMethods, UserModel } from "../interfaces/IUser";
 
-## Iteration plan and steps to follow
+const userSchema = new Schema<IUser, UserModel, IUserMethods>(
+  {
+    first_name: { type: String, required: true },
+    email: { type: String, required: true },
+    dateOfBirth: { type: Date, required: true },
+    password: { type: String, required: true },
+    role: { type: Number, default: 2 },
+    tokens: [{ token: { type: String, required: false } }],
+    routines: [{ type: Types.ObjectId, ref: "RoutineMatcher" }],
+  },
+  {
+    timestamps: true,
+  }
+);
+```
 
-What I need to follow according to the mål:
+### API Insomnia
 
-RESTful API
-Work on all modern browsers
-Must be responsive to all screens
+All endpoints tested in insomnia before attempting to impliment in frontend which saves time and frustrations.
 
-Must have features:
-Register
-Login
-Search
-Admin - CRUD
+- [User collection](./Insomnia/Insomnia_User.har)
+- [Product collection](./Insomnia/Insomnia_Product)
+- [Rouitne collection](./Insomnia/Insomnia_Routine)
+- [Contact collection](./Insomnia/Insomnia_Contact)
 
-Extra:
-Admin can grant permissions based on user roles
-Admin can CRUD user roles
-Admin send out emails from dashboards
+## Frontend
 
-[**Design requirements:**](https://docs.google.com/document/d/1GxUSFX8hcJPLRGmGkvIWJfAz0OJQkvCu1YXBnacw2CE/edit#heading=h.t1pll68q4w9x)
+### React and Tailwind Installs
 
-[User study](https://www.digg.se/webbriktlinjer/tillganglighet/anvandarcentrerat-arbetssatt-och-tjanstedesign) (Minimum 5 persons)
-Personas(Minimum 1 based on user study)
-Stories(based on person)
-Based on the above we get a sitemap and prototype (Lo-fi is good)
+Started by installing the ract pacadke with vit ein my project. [Guide](https://www.geeksforgeeks.org/how-to-setup-reactjs-with-vite/)
 
-More:
-Deployment must support Node.JS, think about CORS and HTTPS.
-Database in the form of documentation database MongoDB
-Use Node.JS and Express
-React or Angular
-Availability for use as well as PWA
-Documentation for API through Insomnia
-Extra: Documentation of everything
-Code standard: [JS](https://airbnb.io/projects/javascript/) and [CSS](https://github.com/airbnb/css)
-[Style guide](https://vicvijayakumar.com/blog/eslint-airbnb-style-guide-prettier/)
+And for tailwind i followed: [Guide](https://tailwindcss.com/docs/guides/create-react-app)
+
+Some pointers:
+
+Front:
+
+Installed React with Vite
+
+- ran `npm create vite@latest projectName --template`
+- choose React package and Typescript with SWC
+- ran `npm install` then `npm run dev`
+
+Installed Tailwind
+
+- ran `npm install -D tailwindcss` in the frontend folder
+- then `npx tailwindcss init`
+- Update the `tailwind.config.js` and `index.css`
+
+### Fronts Stacks
+
+Some dependencies and devdependencies
+
+- @mui/material: UI for framework used for tabs.
+- framer-motion: Some animation library
+- react-spinners: for loading spinners
+- @vite-pwa/assets-generator: for PWA assests
+
+## PWA
+
+Configured PWA with `vite-plugin-pwa` to be able to use the app offline and loade faster.
+
+First I installed the vite-plugin-pwa `npm install vite-plugin-pwa` then configured the `[vite.config.ts](./Fronts/vite.config.ts)` to include the PWA plugin, finally I defined the `[manifest.json](./Fronts/public/manifest.json)` for the app metadata.
