@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://u09-kind-earth-skincare-sebah7-4.onrender.com/api",
+  // "http://localhost:3000/api",
 });
 
 const getAuthToken = (): string | null => {
