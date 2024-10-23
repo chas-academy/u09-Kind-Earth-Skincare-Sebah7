@@ -1,6 +1,9 @@
 import User from "../models/userModel";
 import { IUser } from "../interfaces/IUser";
-import { error } from "console";
+import { CustomRequest } from "../middlewares/authMiddleware";
+import { Response } from "express";
+import Product from "../models/productModel";
+import RoutineMatcherModel from "../models/routineModel";
 
 export const registerUser = async (user: Partial<IUser>) => {
   console.log("Incoming user registration:", user);
@@ -89,7 +92,7 @@ export const loginUser = async (user: Partial<IUser>) => {
 
 export const logoutUser = async (req: any) => {
   try {
-    console.log("User before logout:", req.user); // Debugging: Log the user before logout
+    console.log("User before logout:", req.user);
     console.log("Token before logout:", req.token);
 
     req.user.tokens = req.user.tokens.filter((token: any) => {
@@ -98,11 +101,11 @@ export const logoutUser = async (req: any) => {
 
     await req.user.save();
 
-    console.log("User after logout:", req.user); // Debugging: Log the user after logout
+    console.log("User after logout:", req.user);
 
     return { message: "User logged out successfully." };
   } catch (error) {
-    console.error("Logout Error:", error); // Detailed error logging
+    console.error("Logout Error:", error);
 
     return { error: error };
   }
@@ -113,5 +116,117 @@ export const getUser = async (id: string) => {
     return await User.findById(id);
   } catch (error) {
     return { error: error };
+  }
+};
+
+export const deleteOwnAccount = async (req: CustomRequest, res: Response) => {
+  try {
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ message: "Authentication failed. User not found." });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    await User.findByIdAndDelete(req.user._id);
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user's account:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const updateUser = async (id: string, data: Partial<IUser>) => {
+  try {
+    return await User.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+  } catch (error) {
+    return { error: error };
+  }
+};
+
+export const saveRoutine = async (req: CustomRequest, res: Response) => {
+  try {
+    const { productIds, routineName } = req.body;
+
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ message: "Authentication failed. User not found." });
+    }
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const validProductIds = await Product.find({
+      _id: { $in: productIds },
+    }).select("_id name");
+
+    if (validProductIds.length === 0) {
+      return res.status(404).json({ message: "No valid products found" });
+    }
+
+    const recommendedProducts = validProductIds.map((product) => ({
+      productId: product._id,
+      productName: product.name, // Ensure the name is passed here
+      reason: "Custom routine", // Example reason, you can change this
+    }));
+
+    const routine = await RoutineMatcherModel.create({
+      userId: user._id,
+      questions: [], // Add relevant questions if necessary
+      userAnswers: [], // Add relevant answers if necessary
+      result: {
+        userId: user._id,
+        recommendedProducts,
+      },
+      name: routineName || "My Custom Routine",
+    });
+
+    // validProductIds.forEach((productId) => {
+    //   if (!user.routines.includes(productId._id)) {
+    //     user.routines.push(productId._id);
+    //   }
+    // });
+
+    user.routines.push(routine._id as any);
+    await user.save();
+
+    res.status(200).json({
+      message: "Routine saved successfully",
+      routine,
+      userRoutines: user.routines,
+    });
+  } catch (error) {
+    console.error("Error saving routine:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const deleteSavedRoutine = async (
+  id: string,
+  req: CustomRequest,
+  res: Response
+) => {
+  try {
+    const { productId } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.routines = user.routines.filter((id) => id.toString() !== productId);
+    await user.save();
+    res.status(200).json({ message: "Product deleted successfully", user });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

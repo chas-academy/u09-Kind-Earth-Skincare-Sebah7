@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 
 const QuizOptionSchema: Schema = new Schema({
   id: { type: String, required: true },
@@ -29,12 +29,17 @@ const RoutineRecommendationResultSchema: Schema = new Schema({
 });
 
 const RoutineMatcherSchema: Schema = new Schema({
+  userId: { type: Types.ObjectId, ref: "User", required: true },
   questions: [QuizQuestionSchema],
   userAnswers: [UserAnswerSchema],
   result: RoutineRecommendationResultSchema,
+  name: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
-export const RoutineMatcherModel = mongoose.model(
+const RoutineMatcherModel = mongoose.model(
   "RoutineMatcher",
   RoutineMatcherSchema
 );
+
+export default RoutineMatcherModel;
