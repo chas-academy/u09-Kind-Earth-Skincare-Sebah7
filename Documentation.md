@@ -107,7 +107,6 @@ dependencies and devdependencies:
 - cors(@types/cor): For Cross-Origin Resource Sharing
 - dotenv: To load from .env to process.env
 - jsonwebtoken(@types/jsonwebtoken): To create and verifiy JSON Web Tokens
-- multer: to handle multipart form data, for images
 - nodemailer: to send emails from node.js
 
 ### MongoDB
