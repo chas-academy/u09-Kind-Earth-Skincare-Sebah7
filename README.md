@@ -18,7 +18,7 @@ Kind Earth Skincare is for humans who care about environment, other humans, mind
    - Manage Profile
    - Manage Routine
 - Search and filter
-- Email sent upon regestration
+- Contact Us
 
 ## Source and tools
 - [Figma Design Inspo](https://www.figma.com/design/c2cu6Ibahgz1BqYKOdzrRJ/Low-fi-design?t=9DSMgO1gOeweSRwT-0)
