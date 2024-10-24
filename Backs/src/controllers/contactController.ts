@@ -17,7 +17,7 @@ export const submitContactForm = async (req: Request, res: Response) => {
     await createContactForm(contact);
 
     await sendEmail(
-      "skincarekindearth@gmail.com",
+      "sebahismail21@gmail.com",
       `New Contact Us Submission from ${first_name}`,
       `Message from ${first_name} (${email}):\n\n${message}`
     );
